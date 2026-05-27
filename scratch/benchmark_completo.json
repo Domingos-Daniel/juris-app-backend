@@ -1,0 +1,262 @@
+{
+  "timestamp": "2026-05-15T23:41:12",
+  "provider": "deepseek",
+  "model": "openai/gpt-4o-mini via OpenRouter",
+  "averages": {
+    "fiabilidade": 7.8,
+    "confiabilidade": 9.0,
+    "raciocinio": 9.1,
+    "media_geral": 8.6
+  },
+  "results": [
+    {
+      "latency": 12.7,
+      "provider": "deepseek",
+      "mode": "grounded",
+      "branch": "laboral",
+      "audience": "leigo",
+      "score": 0.52,
+      "level": "Leigo",
+      "sources": 2,
+      "verified": 2,
+      "legal_basis": 2,
+      "issues": [
+        [
+          "high",
+          "unverified_article",
+          "1 artigo(s) citados não foram confirmados no corpus indexado."
+        ]
+      ],
+      "answer_chars": 1677,
+      "label": "Leigo 1 - Despedimento"
+    },
+    {
+      "latency": 11.7,
+      "provider": "deepseek",
+      "mode": "grounded",
+      "branch": "familia",
+      "audience": "leigo",
+      "score": 0.24,
+      "level": "Leigo",
+      "sources": 1,
+      "verified": 0,
+      "legal_basis": 1,
+      "issues": [],
+      "answer_chars": 1602,
+      "label": "Leigo 2 - Guarda de filhos"
+    },
+    {
+      "latency": 14.8,
+      "provider": "deepseek",
+      "mode": "grounded_with_caveat",
+      "branch": "propriedade",
+      "audience": "leigo",
+      "score": 0.5,
+      "level": "Leigo",
+      "sources": 1,
+      "verified": 1,
+      "legal_basis": 1,
+      "issues": [
+        [
+          "high",
+          "unsupported_article",
+          "Há artigos citados sem suporte verificável no contexto recuperado."
+        ],
+        [
+          "low",
+          "general_knowledge_boundary",
+          "A resposta pode usar enquadramento jurídico geral do modelo, mas a confirmação normativa específica "
+        ],
+        [
+          "medium",
+          "limited_contextual_support",
+          "Há enquadramento jurídico plausível, mas o contexto recuperado não basta para confirmar integralment"
+        ]
+      ],
+      "answer_chars": 2412,
+      "label": "Leigo 3 - Posse de terreno"
+    },
+    {
+      "latency": 14.5,
+      "provider": "deepseek",
+      "mode": "grounded",
+      "branch": "civil",
+      "audience": "leigo",
+      "score": 0.45,
+      "level": "Leigo",
+      "sources": 3,
+      "verified": 3,
+      "legal_basis": 3,
+      "issues": [
+        [
+          "high",
+          "branch_mismatch",
+          "A fonte oficial dominante não coincide com o ramo jurídico principal classificado."
+        ],
+        [
+          "high",
+          "unverified_article",
+          "1 artigo(s) citados não foram confirmados no corpus indexado."
+        ]
+      ],
+      "answer_chars": 1935,
+      "label": "Leigo 4 - Bilhete de Identidade"
+    },
+    {
+      "latency": 13.4,
+      "provider": "deepseek",
+      "mode": "grounded",
+      "branch": "constitucional",
+      "audience": "leigo",
+      "score": 0.19,
+      "level": "Leigo",
+      "sources": 5,
+      "verified": 3,
+      "legal_basis": 3,
+      "issues": [
+        [
+          "high",
+          "unverified_article",
+          "3 artigo(s) citados não foram confirmados no corpus indexado."
+        ]
+      ],
+      "answer_chars": 1990,
+      "label": "Leigo 5 - Direitos fundamentais"
+    },
+    {
+      "latency": 13.4,
+      "provider": "deepseek",
+      "mode": "grounded",
+      "branch": "sucessorio",
+      "audience": "leigo",
+      "score": 0.01,
+      "level": "Leigo",
+      "sources": 2,
+      "verified": 1,
+      "legal_basis": 2,
+      "issues": [
+        [
+          "high",
+          "unverified_article",
+          "1 artigo(s) citados não foram confirmados no corpus indexado."
+        ]
+      ],
+      "answer_chars": 2471,
+      "label": "Leigo 6 - Heranca"
+    },
+    {
+      "latency": 18.1,
+      "provider": "deepseek",
+      "mode": "grounded",
+      "branch": "civil",
+      "audience": "tecnico",
+      "score": 0.4,
+      "level": "Profissional",
+      "sources": 1,
+      "verified": 2,
+      "legal_basis": 2,
+      "issues": [
+        [
+          "medium",
+          "unverified_article",
+          "2 artigo(s) citados não foram confirmados no corpus indexado."
+        ]
+      ],
+      "answer_chars": 2945,
+      "label": "Prof 1 - Responsabilidade civil"
+    },
+    {
+      "latency": 13.4,
+      "provider": "deepseek",
+      "mode": "grounded",
+      "branch": "penal",
+      "audience": "leigo",
+      "score": 0.8,
+      "level": "Profissional",
+      "sources": 1,
+      "verified": 1,
+      "legal_basis": 1,
+      "issues": [],
+      "answer_chars": 2452,
+      "label": "Prof 2 - Burla qualificada"
+    },
+    {
+      "latency": 14.0,
+      "provider": "deepseek",
+      "mode": "grounded",
+      "branch": "tributario",
+      "audience": "leigo",
+      "score": 0.4,
+      "level": "Profissional",
+      "sources": 1,
+      "verified": 1,
+      "legal_basis": 1,
+      "issues": [
+        [
+          "medium",
+          "unverified_article",
+          "1 artigo(s) citados não foram confirmados no corpus indexado."
+        ]
+      ],
+      "answer_chars": 2025,
+      "label": "Prof 3 - Prescricao tributaria"
+    },
+    {
+      "latency": 17.0,
+      "provider": "deepseek",
+      "mode": "grounded",
+      "branch": "penal",
+      "audience": "tecnico",
+      "score": 0.4,
+      "level": "Profissional",
+      "sources": 1,
+      "verified": 1,
+      "legal_basis": 1,
+      "issues": [
+        [
+          "medium",
+          "unverified_article",
+          "1 artigo(s) citados não foram confirmados no corpus indexado."
+        ]
+      ],
+      "answer_chars": 2614,
+      "label": "Prof 4 - Prisao preventiva"
+    },
+    {
+      "latency": 17.8,
+      "provider": "deepseek",
+      "mode": "grounded",
+      "branch": "comercial",
+      "audience": "tecnico",
+      "score": 0.19,
+      "level": "Profissional",
+      "sources": 4,
+      "verified": 3,
+      "legal_basis": 3,
+      "issues": [
+        [
+          "high",
+          "unverified_article",
+          "3 artigo(s) citados não foram confirmados no corpus indexado."
+        ]
+      ],
+      "answer_chars": 2949,
+      "label": "Prof 5 - Sociedade por quotas"
+    },
+    {
+      "latency": 11.7,
+      "provider": "deepseek",
+      "mode": "grounded",
+      "branch": "administrativo",
+      "audience": "leigo",
+      "score": 0.24,
+      "level": "Profissional",
+      "sources": 2,
+      "verified": 0,
+      "legal_basis": 2,
+      "issues": [],
+      "answer_chars": 2036,
+      "label": "Prof 6 - Recurso contencioso"
+    }
+  ]
+}

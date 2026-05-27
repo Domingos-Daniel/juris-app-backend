@@ -1,0 +1,733 @@
+[
+  {
+    "id": 1,
+    "category": "Contratos",
+    "question": "Um contrato de compra e venda de imóveis em Angola pode ser resolvido por incumprimento contractual? Quais são os fundamentos legais e prazos aplicáveis?",
+    "complexity": "Alta",
+    "classification": {
+      "query_text": "Um contrato de compra e venda de imóveis em Angola pode ser resolvido por incumprimento contractual? Quais são os fundamentos legais e prazos aplicáveis?",
+      "main_branch": "civil",
+      "branch_candidates": [
+        "civil"
+      ],
+      "request_type": "analise_tecnica",
+      "specificity": "factual",
+      "audience": "tecnico",
+      "is_follow_up": false,
+      "is_correction": false,
+      "is_transformation": false,
+      "transformation_type": "none",
+      "topic_route": "civil_obrigacoes",
+      "search_query": "resolução contrato compra venda imóvel incumprimento Angola fundamentos legais prazos",
+      "norm_type_needed": "misto",
+      "requires_strict_corpus_match": false,
+      "drafting_mode": false,
+      "explicit_branch_override": false,
+      "requested_article_numbers": [],
+      "requested_diplomas": [
+        "Código Civil"
+      ],
+      "needs_article_validation": false,
+      "needs_source_separation": true,
+      "needs_practical_guidance": false,
+      "needs_multi_branch_handling": false,
+      "conversation_branch_hint": null,
+      "conversation_topic_hint": null,
+      "conversation_norm_type_hint": null,
+      "needs_clarification": false,
+      "clarifying_questions": []
+    },
+    "chunks_retrieved": 8,
+    "chunks_sources": [
+      {
+        "title": "Codigo Civil",
+        "source": "Codigo-Civil.pdf",
+        "page": 121,
+        "text_snippet": "artigo 228º. \n3. A coisa deve ser facultada ao comprador para exame. \nArt.º 924º - Segunda modalidade de venda a contento \n1. Se as partes estiverem de acordo sobre a resolução da compra e venda no ca"
+      },
+      {
+        "title": "Codigo Civil",
+        "source": "Codigo-Civil.pdf",
+        "page": 145,
+        "text_snippet": "artigo 559º e, havendo mora do mutuário, o disposto no artigo 806º. \nArt.º 1146º - Usura \n1. É havido como usurário o contrato de mútuo em que sejam estipulados juros anuais \nque excedam os juros lega"
+      },
+      {
+        "title": "Codigo Civil",
+        "source": "Codigo-Civil.pdf",
+        "page": 54,
+        "text_snippet": "SECÇÃO I - Contratos \nSUBSECÇÃO I - Disposições gerais \nArt.º 405º - Liberdade contratual \n1. Dentro dos limites da lei, as partes tem a faculdade de fixar livremente o conteúdo dos \ncontratos, celebr"
+      },
+      {
+        "title": "Lei n.Âº 20/16 de 29 de dezembro",
+        "source": "lei-n-o-20-16-de-29-de-dezembro.pdf",
+        "page": 6,
+        "text_snippet": "ARTIGO 24.º\nMora)\n\n1. O incumprimento, pela entidade contratada, das obriga-\nções e metas constantes do acordo de contrapartidas nos prazos\nnele definido, por razões alheias à entidade pública contrat"
+      }
+    ],
+    "answer": "Sim, um contrato de compra e venda de imóveis em Angola pode ser resolvido por incumprimento contratual, com fundamento no regime geral dos contratos do Código Civil, nomeadamente nos artigos 405.º e seguintes, que consagram a liberdade contratual e a eficácia dos contratos. O contexto recuperado não fornece disposições específicas sobre a resolução por incumprimento na compra e venda de imóveis, mas o artigo 924.º do Código Civil, relativo à venda a contento, prevê a possibilidade de resolução se as partes acordarem nesse sentido, sendo aplicável o disposto nos artigos 432.º e seguintes (resolução por incumprimento). Quanto aos prazos, o contexto não indica prazos específicos para a resolução; o artigo 924.º, n.º 3, remete para o prazo fixado no contrato ou, na sua falta, para o prazo razoável fixado pelo vendedor. O artigo 24.º da Lei n.º 20/16, sobre mora contratual em contratos públicos, estabelece um prazo de um mês de atraso para a constituição em mora, mas não é diretamente aplicável a contratos privados de compra e venda de imóveis. Assim, os fundamentos legais são os princípios gerais dos contratos (artigos 405.º e 406.º) e, se aplicável, o regime da venda a contento (artigo 924.º). Os prazos devem ser os estipulados no contrato ou, na omissão, os fixados pelo vendedor de forma razoável.",
+    "provider_used": "deepseek",
+    "confidence_level": "baixa",
+    "confidence_score": 0.128,
+    "validation_issues": [],
+    "latency_seconds": 45.32,
+    "error": null
+  },
+  {
+    "id": 2,
+    "category": "Trabalho",
+    "question": "Um trabalhador dispensado sem justa causa em Angola tem direito a indemnização? Como se calcula a mesma e quais os prazos para contestation?",
+    "complexity": "Alta",
+    "classification": {
+      "query_text": "Um trabalhador dispensado sem justa causa em Angola tem direito a indemnização? Como se calcula a mesma e quais os prazos para contestation?",
+      "main_branch": "laboral",
+      "branch_candidates": [
+        "laboral"
+      ],
+      "request_type": "explicacao_simples",
+      "specificity": "geral",
+      "audience": "leigo",
+      "is_follow_up": false,
+      "is_correction": false,
+      "is_transformation": false,
+      "transformation_type": "none",
+      "topic_route": "laboral",
+      "search_query": "Um trabalhador dispensado sem justa causa em Angola tem direito a indemnização? Como se calcula a mesma e quais os prazos para contestation?",
+      "norm_type_needed": "misto",
+      "requires_strict_corpus_match": false,
+      "drafting_mode": false,
+      "explicit_branch_override": false,
+      "requested_article_numbers": [],
+      "requested_diplomas": [
+        "Lei Geral do Trabalho"
+      ],
+      "needs_article_validation": false,
+      "needs_source_separation": true,
+      "needs_practical_guidance": false,
+      "needs_multi_branch_handling": false,
+      "conversation_branch_hint": null,
+      "conversation_topic_hint": null,
+      "conversation_norm_type_hint": null,
+      "needs_clarification": false,
+      "clarifying_questions": []
+    },
+    "chunks_retrieved": 5,
+    "chunks_sources": [
+      {
+        "title": "Lei Geral do Trabalho (Lei 12/23)",
+        "source": "Lei-Geral-do-Trabalho-Lei-12-23.pdf",
+        "page": 132,
+        "text_snippet": "ARTIGO 248.º\n(Descontos lícitos)\n1. \u0007É proibido ao empregador proceder à compensação de créditos que te­\nnha sobre o trabalhador no salário devido a este ou efectuar quaisquer \ndescontos ou deduções, "
+      },
+      {
+        "title": "Lei Geral do Trabalho (Lei 12/23)",
+        "source": "Lei-Geral-do-Trabalho-Lei-12-23.pdf",
+        "page": 155,
+        "text_snippet": "ARTIGO 300.º\n(Consequências da ilicitude)\n1. Tendo sido o despedimento declarado ilícito, deve o empregador:\na) \u0007Indemnizar o trabalhador por todos os danos causados, patrimoniais e \nnão patrimoniais;"
+      },
+      {
+        "title": "Lei Geral do Trabalho (Lei 12/23)",
+        "source": "Lei-Geral-do-Trabalho-Lei-12-23.pdf",
+        "page": 160,
+        "text_snippet": "ARTIGO 310.º\n(Indemnização por despedimento individual)\n1. \u0007A indemnização devida ao trabalhador em caso de decisão judicial por ilici­\ntude do despedimento individual com a invocação de justa causa d"
+      },
+      {
+        "title": "Lei Geral do Trabalho (Lei 12/23)",
+        "source": "Lei-Geral-do-Trabalho-Lei-12-23.pdf",
+        "page": 159,
+        "text_snippet": "ARTIGO 308.º\n(Compensação por cessação do contrato por motivos relativos ao empregador)\nA compensação devida aos trabalhadores nos termos dos artigos 289.º e 295.º, \nno caso de despedimento individual"
+      }
+    ],
+    "answer": "Sim, um trabalhador dispensado sem justa causa em Angola tem direito a indemnização. A Lei Geral do Trabalho (Lei 12/23) prevê que, se o despedimento for declarado ilícito, o empregador deve indemnizar o trabalhador por todos os danos causados, reintegrá-lo e pagar os salários desde o despedimento até à decisão final [Art. 300.º, p. 155]. A indemnização específica por despedimento individual sem justa causa é calculada multiplicando o salário-base à data do despedimento pelo número de anos de antiguidade do trabalhador [Art. 310.º, p. 160]. O contexto não indica prazos para contestação; para saber o prazo para propor a acção judicial, seria necessário consultar o Código de Processo do Trabalho ou outra legislação processual, que não está disponível no material fornecido.",
+    "provider_used": "deepseek",
+    "confidence_level": "baixa",
+    "confidence_score": 0.24,
+    "validation_issues": [],
+    "latency_seconds": 7.28,
+    "error": null
+  },
+  {
+    "id": 3,
+    "category": "Direito Penal",
+    "question": "Em que circunstâncias se configura o crime de burla qualificada em Angola e qual a pena aplicável? Existe possibilidade de suspensão da pena?",
+    "complexity": "Alta",
+    "classification": {
+      "query_text": "Em que circunstâncias se configura o crime de burla qualificada em Angola e qual a pena aplicável? Existe possibilidade de suspensão da pena?",
+      "main_branch": "penal",
+      "branch_candidates": [
+        "penal"
+      ],
+      "request_type": "explicacao_simples",
+      "specificity": "geral",
+      "audience": "leigo",
+      "is_follow_up": false,
+      "is_correction": false,
+      "is_transformation": false,
+      "transformation_type": "none",
+      "topic_route": "penal_substantivo",
+      "search_query": "Em que circunstâncias se configura o crime de burla qualificada em Angola e qual a pena aplicável? Existe possibilidade de suspensão da pena?",
+      "norm_type_needed": "misto",
+      "requires_strict_corpus_match": false,
+      "drafting_mode": false,
+      "explicit_branch_override": false,
+      "requested_article_numbers": [],
+      "requested_diplomas": [
+        "Código Penal"
+      ],
+      "needs_article_validation": false,
+      "needs_source_separation": true,
+      "needs_practical_guidance": false,
+      "needs_multi_branch_handling": false,
+      "conversation_branch_hint": null,
+      "conversation_topic_hint": null,
+      "conversation_norm_type_hint": null,
+      "needs_clarification": false,
+      "clarifying_questions": []
+    },
+    "chunks_retrieved": 3,
+    "chunks_sources": [
+      {
+        "title": "Codigo Penal (Lei 38/20)",
+        "source": "Codigo-Penal-Lei-38-20.pdf",
+        "page": 70,
+        "text_snippet": "ARTIGO 426.º (Infidelidade)\n1. Aquele a quem, por lei ou acto jurídico, tiver sido confiado o encargo de administrar, fiscalizar ou dispor de bens\nou outros interesses patrimoniais de outrem e intenci"
+      },
+      {
+        "title": "Codigo Penal (Lei 38/20)",
+        "source": "Codigo-Penal-Lei-38-20.pdf",
+        "page": 77,
+        "text_snippet": "ARTIGO 456.º (Fraude na obtenção de crédito)\n1. É punido com pena de prisão até 1 ano ou com a de multa até 120 dias quem pedir e obtiver a concessão de um\ncrédito destinado a uma empresa ou estabelec"
+      },
+      {
+        "title": "Codigo Penal (Lei 38/20)",
+        "source": "Codigo-Penal-Lei-38-20.pdf",
+        "page": 14,
+        "text_snippet": "ARTIGO 71.º (Circunstâncias relevantes para a determinação da medida da pena)\n1. Sem prejuízo do disposto no n.º 3 do artigo anterior, são unicamente circunstâncias agravantes, ter o agente\ncometido o"
+      }
+    ],
+    "answer": "O contexto fornecido não contém o crime de burla qualificada. Os artigos recuperados referem-se a infidelidade (Art. 426.º), fraude na obtenção de crédito (Art. 456.º) e circunstâncias relevantes para a determinação da pena (Art. 71.º). Não é possível, com base apenas nestes artigos, definir as circunstâncias da burla qualificada, a pena aplicável ou a possibilidade de suspensão da pena. Para uma resposta completa, seria necessário consultar os artigos específicos sobre burla (provavelmente Art. 427.º e seguintes do Código Penal).",
+    "provider_used": "deepseek",
+    "confidence_level": "baixa",
+    "confidence_score": 0.35,
+    "validation_issues": [
+      {
+        "code": "penal_relevance_gap",
+        "message": "A cobertura penal recuperada ainda não isola um fundamento penal material suficientemente forte para alta confiança.",
+        "severity": "medium"
+      }
+    ],
+    "latency_seconds": 5.94,
+    "error": null
+  },
+  {
+    "id": 4,
+    "category": "Sucessões",
+    "question": "Como se processa a partilha de herança quando existem herdeiros menores em Angola? Qual a intervención do tribunal e dos pais/encarregados de educacao?",
+    "complexity": "Alta",
+    "classification": {
+      "query_text": "Como se processa a partilha de herança quando existem herdeiros menores em Angola? Qual a intervención do tribunal e dos pais/encarregados de educacao?",
+      "main_branch": "sucessorio",
+      "branch_candidates": [
+        "sucessorio",
+        "civil"
+      ],
+      "request_type": "explicacao_simples",
+      "specificity": "factual",
+      "audience": "tecnico",
+      "is_follow_up": false,
+      "is_correction": false,
+      "is_transformation": false,
+      "transformation_type": "none",
+      "topic_route": "sucessoes",
+      "search_query": "partilha de herança herdeiros menores Angola intervenção tribunal pais encarregados educação",
+      "norm_type_needed": "misto",
+      "requires_strict_corpus_match": false,
+      "drafting_mode": false,
+      "explicit_branch_override": false,
+      "requested_article_numbers": [],
+      "requested_diplomas": [
+        "Código Civil",
+        "Código de Processo Civil"
+      ],
+      "needs_article_validation": false,
+      "needs_source_separation": true,
+      "needs_practical_guidance": false,
+      "needs_multi_branch_handling": false,
+      "conversation_branch_hint": null,
+      "conversation_topic_hint": null,
+      "conversation_norm_type_hint": null,
+      "needs_clarification": false,
+      "clarifying_questions": []
+    },
+    "chunks_retrieved": 3,
+    "chunks_sources": [
+      {
+        "title": "Codigo Civil",
+        "source": "Codigo-Civil.pdf",
+        "page": 264,
+        "text_snippet": "se poder avaliar da conveniência da constituição do vínculo. \n(1) \nArt.º 1975º - Proibição de várias adopções do mesmo adoptado \nEnquanto subsistir uma adopção não pode constituir-se outra quanto ao m"
+      },
+      {
+        "title": "Codigo da Familia (Lei 1/88)",
+        "source": "Codigo-Familia-Lei-1-88.pdf",
+        "page": 2,
+        "text_snippet": "ARTIGO 6.\npelo casamento.\n(Processo de jurisdiqao voluntaria)\nSimplificaram-se os mecanismos da tutela com vista\n1. Em tudo o que nao contrarie as normas de pro\na que ela venha a ser constituida em ma"
+      },
+      {
+        "title": "Lei n.Âº 13/15 de 19 de junho",
+        "source": "lei-n-o-13-15-de-19-de-junho.pdf",
+        "page": 12,
+        "text_snippet": "ARTIGO 70º\n(Competência e processo)\n\n1. Compete ao Titular do Poder Executivo autorizar a\nformulação do pedido de extradição de pessoa contra a qual\nexista processo pendente em tribunal angolano, ao E"
+      }
+    ],
+    "answer": "O contexto jurídico recuperado não contém disposições específicas sobre partilha de herança com herdeiros menores em Angola. Os artigos fornecidos (1975, 6, 70) tratam de adopção, tutela e extradição, respectivamente, não abordando o processo sucessório ou a intervenção do tribunal e dos pais/encarregados de educação na partilha. Assim, não é possível responder à questão com base no material disponível. Recomenda-se consultar o Código Civil angolano (artigos sobre sucessões e tutela) e o Código da Família para obter a regulamentação aplicável.",
+    "provider_used": "deepseek",
+    "confidence_level": "baixa",
+    "confidence_score": 0.0,
+    "validation_issues": [],
+    "latency_seconds": 9.07,
+    "error": null
+  },
+  {
+    "id": 5,
+    "category": "Arrendamento",
+    "question": "Um senhorio pode náo renovar um contrato de arrendamento habitacional em Angola sem invocar justo motivo? O que diz a lei sobre o direito de preferencia do inquilino?",
+    "complexity": "Alta",
+    "classification": {
+      "query_text": "Um senhorio pode náo renovar um contrato de arrendamento habitacional em Angola sem invocar justo motivo? O que diz a lei sobre o direito de preferencia do inquilino?",
+      "main_branch": "civil",
+      "branch_candidates": [
+        "civil"
+      ],
+      "request_type": "explicacao_simples",
+      "specificity": "factual",
+      "audience": "leigo",
+      "is_follow_up": false,
+      "is_correction": false,
+      "is_transformation": false,
+      "transformation_type": "none",
+      "topic_route": "civil_obrigacoes",
+      "search_query": "renovação contrato arrendamento habitacional Angola justo motivo direito preferência inquilino",
+      "norm_type_needed": "misto",
+      "requires_strict_corpus_match": false,
+      "drafting_mode": false,
+      "explicit_branch_override": false,
+      "requested_article_numbers": [],
+      "requested_diplomas": [
+        "Lei do Arrendamento Urbano"
+      ],
+      "needs_article_validation": false,
+      "needs_source_separation": true,
+      "needs_practical_guidance": false,
+      "needs_multi_branch_handling": false,
+      "conversation_branch_hint": null,
+      "conversation_topic_hint": null,
+      "conversation_norm_type_hint": null,
+      "needs_clarification": false,
+      "clarifying_questions": []
+    },
+    "chunks_retrieved": 8,
+    "chunks_sources": [
+      {
+        "title": "Lei n.Âº 26/15 de 23 de outubro",
+        "source": "lei-n-o-26-15-de-23-de-outubro.pdf",
+        "page": 13,
+        "text_snippet": "ARTIGO 83.º\nODenúncia para habitação)\n\n1. O direito de denúncia para habitação do senhorio\ndepende, em relação a ele, da verificação cumulativa dos\nseguintes requisitos:\n\na) Ser proprietário, compropr"
+      },
+      {
+        "title": "Lei n.Âº 26/15 de 23 de outubro",
+        "source": "lei-n-o-26-15-de-23-de-outubro.pdf",
+        "page": 19,
+        "text_snippet": "ARTIGO 123.º\n(Cessação por denúncia do senhorio)\n\n1. Se o arrendamento cessar por motivo de denúncia do\nsenhorio, o inquilino tem direito a uma compensação em\ndinheiro, sempre que, por facto seu, o pr"
+      },
+      {
+        "title": "Lei n.Âº 20/10 de 07 de setembro",
+        "source": "lei-n-o-20-10-de-07-de-setembro.pdf",
+        "page": 9,
+        "text_snippet": "ARTIGO 36.º\n(Contratos de arrendamento)\n\n1. A celebração de contratos de arrendamento de imóveis\npara instalação de serviços do Estado e Institutos Públicos,\nEmpresas Públicas e Serviços e Fundos Autó"
+      },
+      {
+        "title": "Decreto n.Âº 58/07 de 13 de julho",
+        "source": "decreto-n-o-58-07-de-13-de-julho.pdf",
+        "page": 27,
+        "text_snippet": "ARTIGO 194º\n<Denúncia do contrato de arrendamento)\n\nO contrato de arrendamento pelo qual haja sido cons-\ntítuído um direito de ocupação precária pode ser dertun-\nciado para o termo do prazo inicial ou"
+      }
+    ],
+    "answer": "A lei angolana distingue entre arrendamentos de duração determinada e indeterminada. Num contrato com prazo certo, o senhorio não pode simplesmente não renovar sem justo motivo se o inquilino tiver direito de preferência na celebração de novo contrato, nos termos do Art. 58.º, n.º 1, alínea b) da Lei n.º 26/15 de 23 de outubro. Esse direito existe enquanto não for exigível a restituição do imóvel. Já nos arrendamentos de duração indeterminada, o senhorio pode denunciar o contrato para habitação própria, desde que cumpra os requisitos do Art. 83.º da mesma lei: ser proprietário há mais de 5 anos (ou por sucessão) e não ter casa própria ou arrendada na localidade há mais de 1 ano. Se a denúncia for sem justo motivo, o inquilino pode ter direito a compensação (Art. 123.º). Quanto ao direito de preferência, o inquilino tem preferência na compra do imóvel arrendado há mais de 3 anos e na celebração de novo contrato em caso de caducidade (Art. 58.º).",
+    "provider_used": "deepseek",
+    "confidence_level": "baixa",
+    "confidence_score": 0.0,
+    "validation_issues": [
+      {
+        "code": "branch_mismatch",
+        "message": "A fonte oficial dominante não coincide com o ramo jurídico principal classificado.",
+        "severity": "high"
+      }
+    ],
+    "latency_seconds": 7.88,
+    "error": null
+  },
+  {
+    "id": 6,
+    "category": "Responsabilidade Civil",
+    "question": "Uma empresa que commercializa produtos defeituosos responde civilmente pelos danos causados ao consumidor em Angola? Quais os pressupostos da responsabilidade do produtor?",
+    "complexity": "Alta",
+    "classification": {
+      "query_text": "Uma empresa que commercializa produtos defeituosos responde civilmente pelos danos causados ao consumidor em Angola? Quais os pressupostos da responsabilidade do produtor?",
+      "main_branch": "civil",
+      "branch_candidates": [
+        "civil"
+      ],
+      "request_type": "analise_tecnica",
+      "specificity": "factual",
+      "audience": "misto",
+      "is_follow_up": false,
+      "is_correction": false,
+      "is_transformation": false,
+      "transformation_type": "none",
+      "topic_route": "civil_obrigacoes",
+      "search_query": "responsabilidade civil do produtor por produtos defeituosos Angola pressupostos",
+      "norm_type_needed": "misto",
+      "requires_strict_corpus_match": false,
+      "drafting_mode": false,
+      "explicit_branch_override": false,
+      "requested_article_numbers": [],
+      "requested_diplomas": [],
+      "needs_article_validation": false,
+      "needs_source_separation": true,
+      "needs_practical_guidance": false,
+      "needs_multi_branch_handling": false,
+      "conversation_branch_hint": null,
+      "conversation_topic_hint": null,
+      "conversation_norm_type_hint": null,
+      "needs_clarification": false,
+      "clarifying_questions": []
+    },
+    "chunks_retrieved": 8,
+    "chunks_sources": [
+      {
+        "title": "Codigo Civil",
+        "source": "Codigo-Civil.pdf",
+        "page": 105,
+        "text_snippet": "artigo 807º. \n3. Quando o contrato estiver dependente de condição resolutiva, o risco do perecimento \ndurante a pendência da condição corre por conta do adquirente, se a coisa lhe tiver sido \nentregue"
+      },
+      {
+        "title": "Codigo Civil",
+        "source": "Codigo-Civil.pdf",
+        "page": 67,
+        "text_snippet": "artigo 489º. \n3. Aquele que conduzir o veículo por conta de outrem responde pelos danos que causar, \nsalvo se provar que não houve culpa da sua parte; se, porém, o conduzir fora do exercício \ndas suas"
+      },
+      {
+        "title": "Codigo Civil",
+        "source": "Codigo-Civil.pdf",
+        "page": 76,
+        "text_snippet": "exigir, no acto do pagamento ou em momento posterior, que o lesado lhe ceda os seus \ndireitos contra terceiros. \nArt.º 569º - Indicação do montante dos danos \nQuem exigir a indemnização não necessita "
+      },
+      {
+        "title": "Codigo Civil",
+        "source": "Codigo-Civil.pdf",
+        "page": 64,
+        "text_snippet": "SECÇÃO V - Responsabilidade civil \nSUBSECÇÃO I - Responsabilidade por factos ilícitos \nArt.º 483º - Princípio geral \n1. Aquele que, com dolo ou mera culpa, violar ilicitamente o direito de outrem ou \n"
+      }
+    ],
+    "answer": "A responsabilidade civil do produtor por produtos defeituosos em Angola não está expressamente regulada no Código Civil como um regime especial. No entanto, o princípio geral da responsabilidade civil extracontratual, previsto no artigo 483.º do Código Civil, pode ser aplicado. Este artigo estabelece que aquele que, com dolo ou mera culpa, violar ilicitamente o direito de outrem ou qualquer disposição legal destinada a proteger interesses alheios fica obrigado a indemnizar o lesado pelos danos resultantes da violação.\n\nOs pressupostos da responsabilidade civil do produtor, com base no artigo 483.º, são:\n- **Facto ilícito**: a colocação no mercado de um produto defeituoso que viole direitos do consumidor ou disposições legais de protecção.\n- **Culpa**: dolo ou mera culpa do produtor (negligência na produção, controlo de qualidade, etc.).\n- **Dano**: danos patrimoniais ou não patrimoniais sofridos pelo consumidor.\n- **Nexo de causalidade**: relação directa entre o defeito do produto e o dano.\n\nAdicionalmente, o artigo 493.º do Código Civil prevê a responsabilidade por danos causados por coisas móveis ou imóveis, aplicável a produtos defeituosos, com inversão do ónus da prova: o produtor responde salvo se provar que não houve culpa sua.\n\n**Nota prudencial**: O contexto recuperado não contém uma lei específica de responsabilidade do produtor (como a Directiva Europeia 85/374). A Lei n.º 7/12 (artigo 13.º) e a Lei n.º 13/15 (artigo 143.º) referem-se a contextos muito específicos (produção audiovisual e equipas de investigação criminal) e não são aplicáveis a produtos defeituosos em geral. Assim, a análise baseia-se exclusivamente nos artigos do Código Civil disponíveis.",
+    "provider_used": "deepseek",
+    "confidence_level": "baixa",
+    "confidence_score": 0.24,
+    "validation_issues": [],
+    "latency_seconds": 9.17,
+    "error": null
+  },
+  {
+    "id": 7,
+    "category": "Processo Civil",
+    "question": "O que acontece se uma das partes num processo civil em Angola nao comparece à audiencia de julgamento? O julgamento pode prosseguir à revelia?",
+    "complexity": "Média",
+    "classification": {
+      "query_text": "O que acontece se uma das partes num processo civil em Angola nao comparece à audiencia de julgamento? O julgamento pode prosseguir à revelia?",
+      "main_branch": "civil",
+      "branch_candidates": [
+        "civil"
+      ],
+      "request_type": "explicacao_simples",
+      "specificity": "factual",
+      "audience": "leigo",
+      "is_follow_up": false,
+      "is_correction": false,
+      "is_transformation": false,
+      "transformation_type": "none",
+      "topic_route": "cpc",
+      "search_query": "revelia processo civil Angola não comparecimento audiencia julgamento",
+      "norm_type_needed": "misto",
+      "requires_strict_corpus_match": false,
+      "drafting_mode": false,
+      "explicit_branch_override": false,
+      "requested_article_numbers": [],
+      "requested_diplomas": [
+        "Código de Processo Civil"
+      ],
+      "needs_article_validation": false,
+      "needs_source_separation": true,
+      "needs_practical_guidance": false,
+      "needs_multi_branch_handling": false,
+      "conversation_branch_hint": null,
+      "conversation_topic_hint": null,
+      "conversation_norm_type_hint": null,
+      "needs_clarification": false,
+      "clarifying_questions": []
+    },
+    "chunks_retrieved": 8,
+    "chunks_sources": [
+      {
+        "title": "Codigo Civil",
+        "source": "Codigo-Civil.pdf",
+        "page": 236,
+        "text_snippet": "artigo 1798º, ou a provar que o período de gestação do filho foi \ninferior a cento e oitenta dias ou superior a trezentos. \n2. A acção pode ser proposta por qualquer interessado ou pelo Ministério Púb"
+      },
+      {
+        "title": "Codigo Civil",
+        "source": "Codigo-Civil.pdf",
+        "page": 238,
+        "text_snippet": "artigo \n1815º, a acção pode ser proposta no ano seguinte à rectificação, declaração de nulidade \nou cancelamento do registo inibitório, contanto que a remoção do obstáculo tenha sido \nrequerida até ao"
+      },
+      {
+        "title": "Codigo Civil",
+        "source": "Codigo-Civil.pdf",
+        "page": 46,
+        "text_snippet": "compete àquele contra quem a invocação é feita. \n3. Em caso de dúvida, os factos devem ser considerados como constitutivos do direito. \nArt.º 343º - Ónus da prova em casos especiais \n1. Nas acções de "
+      },
+      {
+        "title": "Codigo Civil",
+        "source": "Codigo-Civil.pdf",
+        "page": 64,
+        "text_snippet": "SECÇÃO V - Responsabilidade civil \nSUBSECÇÃO I - Responsabilidade por factos ilícitos \nArt.º 483º - Princípio geral \n1. Aquele que, com dolo ou mera culpa, violar ilicitamente o direito de outrem ou \n"
+      }
+    ],
+    "answer": "Se uma das partes não comparecer à audiência de julgamento num processo civil em Angola, o julgamento pode prosseguir à revelia, desde que a parte tenha sido regularmente citada e não tenha apresentado justificação para a ausência. O tribunal pode considerar a falta como confissão dos factos alegados pela parte contrária, nos termos do artigo 358.º do Código Civil, que atribui força probatória plena à confissão judicial. No entanto, o contexto fornecido não especifica os prazos ou procedimentos exatos para a revelia no processo civil, sendo necessário consultar o Código de Processo Civil para detalhes adicionais.",
+    "provider_used": "deepseek",
+    "confidence_level": "baixa",
+    "confidence_score": 0.172,
+    "validation_issues": [],
+    "latency_seconds": 6.94,
+    "error": null
+  },
+  {
+    "id": 8,
+    "category": "Direito Societário",
+    "question": "Um socio minoritário de uma sociedade anónima em Angola pode impugnar uma deliberação da assembleia geral que considera lesiva dos seus direitos? Em que prazo e perante que órgão?",
+    "complexity": "Alta",
+    "classification": {
+      "query_text": "Um socio minoritário de uma sociedade anónima em Angola pode impugnar uma deliberação da assembleia geral que considera lesiva dos seus direitos? Em que prazo e perante que órgão?",
+      "main_branch": "comercial",
+      "branch_candidates": [
+        "comercial"
+      ],
+      "request_type": "analise_tecnica",
+      "specificity": "factual",
+      "audience": "tecnico",
+      "is_follow_up": false,
+      "is_correction": false,
+      "is_transformation": false,
+      "transformation_type": "none",
+      "topic_route": "sociedades",
+      "search_query": "impugnação de deliberações sociais sociedade anónima Angola prazo órgão competente",
+      "norm_type_needed": "misto",
+      "requires_strict_corpus_match": true,
+      "drafting_mode": false,
+      "explicit_branch_override": false,
+      "requested_article_numbers": [],
+      "requested_diplomas": [
+        "Lei das Sociedades Comerciais (Lei n.º 1/04 de 13 de Fevereiro)"
+      ],
+      "needs_article_validation": false,
+      "needs_source_separation": true,
+      "needs_practical_guidance": false,
+      "needs_multi_branch_handling": false,
+      "conversation_branch_hint": null,
+      "conversation_topic_hint": null,
+      "conversation_norm_type_hint": null,
+      "needs_clarification": false,
+      "clarifying_questions": []
+    },
+    "chunks_retrieved": 8,
+    "chunks_sources": [
+      {
+        "title": "Lei das Sociedades Comerciais (Lei 1/04)",
+        "source": "Lei-Sociedades-Comerciais-Lei-1-04.pdf",
+        "page": 83,
+        "text_snippet": "ARTIGO 399.*\n gada com a presenca do representado na Assembleia Gerai.\n(Participsagio na Assemhitia Geral)\n3.  pedido de representacio deve. pclo menos, canicr:\nI. Tém direito : estar presenics na Ass"
+      },
+      {
+        "title": "Lei das Sociedades Comerciais (Lei 1/04)",
+        "source": "Lei-Sociedades-Comerciais-Lei-1-04.pdf",
+        "page": 36,
+        "text_snippet": "ARTIGO 174,\n(Regularizaco da sociedade)\nextingao da sociedade, os direitos de terceiros contra a\nsociedade exerciveis contra os antigos sócios e os cxigiveis\nI. Antes de tomar as providéncias determit"
+      },
+      {
+        "title": "Lei das Sociedades Comerciais (Lei 1/04)",
+        "source": "Lei-Sociedades-Comerciais-Lei-1-04.pdf",
+        "page": 84,
+        "text_snippet": "ARTIGO 403.\nmora na realizacao do capital sociat que tenha subscrito\n(Quórom}\n5. O contratode sociedade nao pode estabelecer o voic\n1. $alvo  disposto no contrato de socicdxe ou no\nplural.\nnünero segu"
+      },
+      {
+        "title": "Lei das Sociedades Comerciais (Lei 1/04)",
+        "source": "Lei-Sociedades-Comerciais-Lei-1-04.pdf",
+        "page": 55,
+        "text_snippet": "ARTIGO 271.\nde medidas relativas aos prejuizos;\n(Regime do contrata de suprimento)\nj a exclusáo ou limitacao da responsabilidade dos\n1. Näo tendo sido estipuladu  prazo para o reembolso\ngerentes ou do"
+      }
+    ],
+    "answer": "Sim, o sócio minoritário de uma sociedade anónima pode impugnar uma deliberação da assembleia geral que considere lesiva dos seus direitos, desde que a deliberação seja anulável ou nula nos termos da lei. O contexto recuperado não especifica o prazo nem o órgão competente para a impugnação de deliberações sociais em geral, mas indica que a acção de declaração de nulidade pode ser intentada a todo o tempo pelo Ministério Público, por qualquer sócio, por qualquer membro da gerência ou administração ou do Conselho Fiscal, e ainda por qualquer terceiro, com base em vícios específicos (art. 46.º, Lei das Sociedades Comerciais). Para deliberações anuláveis, o prazo é geralmente de 30 dias a contar da deliberação, mas o contexto não o confirma. Quanto ao órgão competente, a acção deve ser proposta no tribunal judicial competente da área da sede da sociedade. Recomenda-se a consulta dos artigos 46.º e seguintes da Lei das Sociedades Comerciais para os prazos e procedimentos exactos.",
+    "provider_used": "deepseek",
+    "confidence_level": "baixa",
+    "confidence_score": 0.24,
+    "validation_issues": [],
+    "latency_seconds": 8.33,
+    "error": null
+  },
+  {
+    "id": 9,
+    "category": "Direito Fiscal",
+    "question": "Uma empresa angolana que deixou de pagar impostos durante 3 anos pode ainda ser autuada pela Autoridade Tributária? Qual o prazo prescricional aplicável?",
+    "complexity": "Alta",
+    "classification": {
+      "query_text": "Uma empresa angolana que deixou de pagar impostos durante 3 anos pode ainda ser autuada pela Autoridade Tributária? Qual o prazo prescricional aplicável?",
+      "main_branch": "tributario",
+      "branch_candidates": [
+        "tributario"
+      ],
+      "request_type": "explicacao_simples",
+      "specificity": "factual",
+      "audience": "misto",
+      "is_follow_up": false,
+      "is_correction": false,
+      "is_transformation": false,
+      "transformation_type": "none",
+      "topic_route": "tributario",
+      "search_query": "prescricao divida tributaria Angola prazo autuacao falta pagamento impostos",
+      "norm_type_needed": "misto",
+      "requires_strict_corpus_match": false,
+      "drafting_mode": false,
+      "explicit_branch_override": false,
+      "requested_article_numbers": [],
+      "requested_diplomas": [
+        "Código Geral Tributário",
+        "Lei Geral Tributária"
+      ],
+      "needs_article_validation": false,
+      "needs_source_separation": true,
+      "needs_practical_guidance": false,
+      "needs_multi_branch_handling": false,
+      "conversation_branch_hint": null,
+      "conversation_topic_hint": null,
+      "conversation_norm_type_hint": null,
+      "needs_clarification": false,
+      "clarifying_questions": []
+    },
+    "chunks_retrieved": 8,
+    "chunks_sources": [
+      {
+        "title": "Codigo Geral Tributario (Lei 21/14)",
+        "source": "Codigo-Geral-Tributario-Lei-21-14.pdf",
+        "page": 32,
+        "text_snippet": "ARTIGO 177.°\n(Fraude fiscal aduaneir a)\nde prestacao tributaria:\na) A nao entrega total ou parcial, ao credor tributario,\nComete o crime de fraude fiscal aduaneira, punivel com\nda prestacao fiscal ou "
+      },
+      {
+        "title": "Codigo Geral Tributario (Lei 21/14)",
+        "source": "Codigo-Geral-Tributario-Lei-21-14.pdf",
+        "page": 7,
+        "text_snippet": "ARTIGO 21.°\nARTIGO 18.°\n(Caducidade dos beneficios fiscais)\n(Acesso aos beneficios fiscais)\n1. Os beneficios fiscais caducam no termo do prazo por\n1. O acesso aos beneficios fiscais depende da verific"
+      },
+      {
+        "title": "Codigo Geral Tributario (Lei 21/14)",
+        "source": "Codigo-Geral-Tributario-Lei-21-14.pdf",
+        "page": 13,
+        "text_snippet": "ARTIGO 56.°\nou recurso hierarquico, pode ser ainda requerido nos 60 (ses-\n(Pagamento por terceiro)\nsenta) dias posteriores a notificacao da decisao de anulacao\n1. O pagamento pode ser efectuado pelo d"
+      },
+      {
+        "title": "Codigo Geral Tributario (Lei 21/14)",
+        "source": "Codigo-Geral-Tributario-Lei-21-14.pdf",
+        "page": 9,
+        "text_snippet": "ARTIGO 35.\nmente constituidas, mas que, de facto, procedam como\n(Gestao de negócios)\nse estivessem, terao os mesmos direitos e obrigaces das\n1. Os actos em matéria tributaria podem ser praticados\ncons"
+      }
+    ],
+    "answer": "Sim, a empresa pode ser autuada, desde que o prazo de prescrição da dívida tributária ainda não tenha decorrido. O Código Geral Tributário (Lei 21/14) estabelece, no artigo 61.º, a indisponibilidade do crédito tributário, mas não fixa diretamente o prazo prescricional. Contudo, o artigo 61.º, n.º 6, menciona o efeito suspensivo do prazo de prescrição, indicando que existe um prazo prescricional. O contexto recuperado não especifica o prazo exato de prescrição para dívidas tributárias. Portanto, com base apenas no contexto fornecido, não é possível determinar o prazo prescricional aplicável. Recomenda-se consultar a legislação específica sobre prescrição tributária, como o artigo 48.º do Código Geral Tributário (não presente no contexto).",
+    "provider_used": "deepseek",
+    "confidence_level": "baixa",
+    "confidence_score": 0.24,
+    "validation_issues": [],
+    "latency_seconds": 8.85,
+    "error": null
+  },
+  {
+    "id": 10,
+    "category": "Direito da Família",
+    "question": "Em caso de divorcio litigioso em Angola, como se determina a guarda dos filhos menores? Que peso tem a vontade da criança na decisão do tribunal?",
+    "complexity": "Alta",
+    "classification": {
+      "query_text": "Em caso de divorcio litigioso em Angola, como se determina a guarda dos filhos menores? Que peso tem a vontade da criança na decisão do tribunal?",
+      "main_branch": "familia",
+      "branch_candidates": [
+        "familia"
+      ],
+      "request_type": "explicacao_simples",
+      "specificity": "geral",
+      "audience": "tecnico",
+      "is_follow_up": false,
+      "is_correction": false,
+      "is_transformation": false,
+      "transformation_type": "none",
+      "topic_route": "familia",
+      "search_query": "Em caso de divorcio litigioso em Angola, como se determina a guarda dos filhos menores? Que peso tem a vontade da criança na decisão do tribunal?",
+      "norm_type_needed": "misto",
+      "requires_strict_corpus_match": false,
+      "drafting_mode": false,
+      "explicit_branch_override": false,
+      "requested_article_numbers": [],
+      "requested_diplomas": [
+        "Código da Família"
+      ],
+      "needs_article_validation": false,
+      "needs_source_separation": true,
+      "needs_practical_guidance": false,
+      "needs_multi_branch_handling": false,
+      "conversation_branch_hint": null,
+      "conversation_topic_hint": null,
+      "conversation_norm_type_hint": null,
+      "needs_clarification": false,
+      "clarifying_questions": []
+    },
+    "chunks_retrieved": 8,
+    "chunks_sources": [
+      {
+        "title": "Codigo da Familia (Lei 1/88)",
+        "source": "Codigo-Familia-Lei-1-88.pdf",
+        "page": 14,
+        "text_snippet": "ARTIGO 101\nARTIGO 106.\n(Perda do direito)\n(Conversao do divórcia litigioso em\nO conjuge que houver revelado pelo seu comporta-\ndivrcio por mútuo acordo) \nmento, designadamente por perdao expresso ou t"
+      },
+      {
+        "title": "Codigo da Familia (Lei 1/88)",
+        "source": "Codigo-Familia-Lei-1-88.pdf",
+        "page": 16,
+        "text_snippet": "ARTIGO 133.\nproduz, consoante o caso, os mesros efeitos da disso-\nIucao do casamento por morte ou por divórcio e esta\n(Direita ao none)\nsujeita a registo.\n1. O filho tem o direito ao uso dos apelidos "
+      },
+      {
+        "title": "Codigo da Familia (Lei 1/88)",
+        "source": "Codigo-Familia-Lei-1-88.pdf",
+        "page": 17,
+        "text_snippet": "ARTIGO 142.0\nou divórcio, poderao o pai e a rnae estabelecer por\n(Bens excluidos da adminiatragao)\nacordo o exercicio da autoridade paternal.\n 2. O acordo carece de hamologacao judicial, nos ter-\nSao "
+      },
+      {
+        "title": "Codigo da Familia (Lei 1/88)",
+        "source": "Codigo-Familia-Lei-1-88.pdf",
+        "page": 15,
+        "text_snippet": "ARTIGO 116.\nARTIGO 110.*\n(Formalidadc)\n(Atribuicao da residancia familiar)\n1. O pedido sera acompanhado dos documenios\nNa atribuicao da residencia faniliar deve o Tribunal\n comprovativos da verificaca"
+      }
+    ],
+    "answer": "### Determinação da guarda dos filhos menores no divórcio litigioso\n\nNo divórcio litigioso, a determinação da guarda dos filhos menores rege-se pelo disposto no Código da Família (Lei 1/88). O artigo 142.º, n.º 1, estabelece que, na separação judicial de pessoas e bens ou divórcio, o pai e a mãe podem estabelecer por acordo o exercício da autoridade paternal. Esse acordo carece de homologação judicial, nos termos do artigo 109.º, n.º 1 (artigo 142.º, n.º 2). Na falta de acordo, o tribunal decide a qual dos progenitores deve ser atribuído o exercício da autoridade paternal (artigo 142.º, n.º 3).\n\nO tribunal, ao decidir, deve ter em conta o interesse dos filhos do casal, conforme o artigo 110.º (aplicável por remissão do artigo 116.º, que trata da atribuição da residência familiar). O artigo 110.º determina que, na atribuição da residência familiar, o tribunal deve ter em conta as condições de vida dos cônjuges, o interesse dos filhos do casal e as causas do divórcio. Embora o contexto não explicite detalhadamente os critérios para a guarda, o interesse do menor é o princípio orientador.\n\n### Peso da vontade da criança\n\nO contexto recuperado não contém disposição específica sobre o peso da vontade da criança na decisão do tribunal. O artigo 215.º permite ao tribunal, sempre que o julgue conveniente, tendo em vista a salvaguarda dos interesses do menor, ouvir o Conselho de Família, mas não menciona a audição da criança. O artigo 133.º, n.º 2, refere que, na escolha do nome do filho, na falta de acordo entre os pais, o tribunal decide ouvido o Conselho de Família, mas não aborda a vontade da criança.\n\nAssim, com base exclusivamente no contexto fornecido, não é possível afirmar que a vontade da criança tenha um peso específico na decisão do tribunal sobre a guarda. O contexto não regula a audição da criança nem atribui relevância à sua opinião. Recomenda-se a consulta de outras fontes ou de legislação complementar para esclarecer este ponto.",
+    "provider_used": "deepseek",
+    "confidence_level": "baixa",
+    "confidence_score": 0.24,
+    "validation_issues": [],
+    "latency_seconds": 8.6,
+    "error": null
+  }
+]

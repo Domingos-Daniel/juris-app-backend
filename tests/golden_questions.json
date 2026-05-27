@@ -1,0 +1,154 @@
+[
+  {
+    "id": 1,
+    "question": "Qual a pena para burla em Angola?",
+    "expected": {
+      "answer_mode": "grounded",
+      "main_branch_in": ["penal", "indeterminado"],
+      "min_confidence": 0.20,
+      "expected_diplomas": ["Código Penal"],
+      "must_include": ["burla", "pena"],
+      "must_not_contain": ["Lei Geral do Trabalho", "despedimento"]
+    }
+  },
+  {
+    "id": 2,
+    "question": "O meu chefe não me pagou o salário, o que fazer?",
+    "expected": {
+      "answer_mode": "grounded",
+      "main_branch_in": ["laboral", "indeterminado"],
+      "min_confidence": 0.25,
+      "expected_diplomas": ["Lei Geral do Trabalho"],
+      "must_include": ["pagamento", "salário"],
+      "must_not_contain": ["Código Penal", "burla"]
+    }
+  },
+  {
+    "id": 3,
+    "question": "Preciso de ajuda com a lei, o que faço?",
+    "expected": {
+      "answer_mode_in": ["clarifying", "grounded"],
+      "min_confidence": 0.05
+    }
+  },
+  {
+    "id": 4,
+    "question": "Como funciona a guarda dos filhos no divórcio?",
+    "expected": {
+      "answer_mode_in": ["grounded", "limited"],
+      "main_branch_in": ["familia", "civil", "indeterminado"],
+      "min_confidence": 0.20,
+      "expected_diplomas": ["Família"],
+      "must_include": ["guarda", "filhos"],
+      "must_not_contain": ["Código Penal"]
+    }
+  },
+  {
+    "id": 5,
+    "question": "Qual o prazo para contestar um acto administrativo?",
+    "expected": {
+      "answer_mode_in": ["grounded", "limited"],
+      "main_branch_in": ["administrativo", "indeterminado"],
+      "min_confidence": 0.20,
+      "must_include": ["prazo", "acto"]
+    }
+  },
+  {
+    "id": 6,
+    "question": "Como pedir a segunda via do Bilhete de Identidade?",
+    "expected": {
+      "answer_mode_in": ["grounded", "limited"],
+      "min_confidence": 0.20,
+      "must_include": ["bilhete", "identidade"],
+      "must_not_contain": ["Código Penal"]
+    }
+  },
+  {
+    "id": 7,
+    "question": "O que diz o artigo 26 da Constituição?",
+    "expected": {
+      "answer_mode_in": ["grounded", "limited"],
+      "main_branch_in": ["constitucional", "indeterminado"],
+      "min_confidence": 0.15,
+      "expected_diplomas": ["Constituição"],
+      "must_include": ["26"]
+    }
+  },
+  {
+    "id": 8,
+    "question": "Quais os direitos dos sócios minoritários?",
+    "expected": {
+      "answer_mode_in": ["grounded", "limited"],
+      "main_branch_in": ["comercial", "indeterminado"],
+      "min_confidence": 0.20,
+      "expected_diplomas": ["Sociedades"],
+      "must_include": ["sócios", "direitos"]
+    }
+  },
+  {
+    "id": 9,
+    "question": "Um senhorio pode despejar-me sem justo motivo?",
+    "expected": {
+      "answer_mode_in": ["grounded", "limited"],
+      "min_confidence": 0.15,
+      "must_include": ["senhorio", "arrendamento"]
+    }
+  },
+  {
+    "id": 10,
+    "question": "Fui despedido sem aviso, quais os meus direitos?",
+    "expected": {
+      "answer_mode_in": ["grounded", "limited"],
+      "main_branch_in": ["laboral", "indeterminado"],
+      "min_confidence": 0.25,
+      "must_include": ["despedimento", "indemnização"],
+      "must_not_contain": ["Código Penal", "burla"]
+    }
+  },
+  {
+    "id": 11,
+    "question": "Como funciona a herança em Angola?",
+    "expected": {
+      "answer_mode_in": ["grounded", "limited"],
+      "min_confidence": 0.20,
+      "must_include": ["herança", "herdeiro"],
+      "must_not_contain": ["Código Penal"]
+    }
+  },
+  {
+    "id": 12,
+    "question": "Uma empresa vendeu produto defeituoso, responde civilmente?",
+    "expected": {
+      "answer_mode_in": ["grounded", "limited"],
+      "min_confidence": 0.15,
+      "must_include": ["responsabilidade", "dano"]
+    }
+  },
+  {
+    "id": 13,
+    "question": "O que acontece se faltar à audiência de julgamento no processo civil?",
+    "expected": {
+      "answer_mode_in": ["grounded", "limited"],
+      "min_confidence": 0.20,
+      "must_include": ["audiência", "falta"]
+    }
+  },
+  {
+    "id": 14,
+    "question": "Uma empresa deixou de pagar impostos 3 anos, ainda pode ser autuada?",
+    "expected": {
+      "answer_mode_in": ["grounded", "limited"],
+      "min_confidence": 0.15,
+      "must_include": ["imposto", "prazo"]
+    }
+  },
+  {
+    "id": 15,
+    "question": "Qual o custo da segunda via do Bilhete de Identidade?",
+    "expected": {
+      "answer_mode_in": ["grounded", "limited"],
+      "min_confidence": 0.20,
+      "must_include": ["bilhete", "identidade"]
+    }
+  }
+]

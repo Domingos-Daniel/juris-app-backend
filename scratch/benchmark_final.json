@@ -1,0 +1,226 @@
+{
+  "timestamp": "2026-05-15T14:02:42",
+  "provider": "openrouter",
+  "tests": {
+    "Leigo 1 (Trabalho)": {
+      "label": "Leigo 1 (Trabalho)",
+      "question": "O que devo fazer se fui despedido do meu trabalho sem justa causa? Tenho direito a alguma indemnizacao?",
+      "status_code": 200,
+      "latency_seconds": 15.936,
+      "answer": "# Análise Jurídica sobre Despedimento Sem Justa Causa em Angola\n\nO despedimento sem justa causa é uma questão que gera muitas dúvidas entre os trabalhadores em Angola. De acordo com a **Lei Geral do Trabalho (Lei 12/23)**, o despedimento é considerado ilícito quando não há uma justificativa válida para a sua realização. Neste contexto, o trabalhador que se sentir injustamente despedido tem direitos assegurados pela legislação angolana, que visam proteger a sua dignidade e garantir uma compensação adequada.\n\n### Direitos do Trabalhador Após Despedimento Ilícito\nConforme estipulado no **Artigo 300.º** da Lei Geral do Trabalho, se o despedimento for declarado ilícito, o empregador tem a obrigação de:  \n1. **Indemnizar o trabalhador** por todos os danos causados, tanto patrimoniais como não patrimoniais;  \n2. **Reintegrar o trabalhador** ao seu posto de trabalho;  \n3. **Pagar os salários devidos** desde a data do despedimento até que a decisão judicial transite em julgado, com algumas condições específicas sobre o período de pagamento.  \n\nCaso a reintegração não seja possível ou o trabalhador não deseje retornar, o empregador deve indemnizá-lo conforme o **Artigo 310.º**, que estabelece que a indemnização deve ser calculada multiplicando o valor do salário-base pela antiguidade do trabalhador na empresa. É importante ressaltar que a indemnização mínima deve corresponder a três meses de salário-base.\n\n### Passos a Seguir\nSe você foi despedido sem justa causa, é recomendável que siga os seguintes passos:  \n1. **Reúna Documentação**: Junte todos os documentos que comprovem o seu vínculo empregatício e o despedimento, como contrato de trabalho, recibos de salário e a comunicação do despedimento.  \n2. **Consulte um Advogado**: É aconselhável procurar um advogado especializado em Direito Laboral para que ele possa analisar o seu caso e orientá-lo sobre as melhores ações a serem tomadas.  \n3. **Proponha uma Ação Judicial**: Caso decida avançar, o advogado poderá ajudá-lo a propor uma ação judicial contra o empregador, visando a reintegração ou a indemnização devida. Lembre-se que o prazo para a propositura da ação é de 90 dias após o despedimento.\n\nEm suma, o trabalhador despedido sem justa causa tem direitos claros que devem ser respeitados. A legislação angolana oferece mecanismos de proteção que visam garantir a justiça e a reparação adequada em casos de despedimento ilícito.",
+      "answer_length_chars": 2410,
+      "answer_mode": "grounded",
+      "provider_used": "openrouter",
+      "num_sources": 5,
+      "confidence": {
+        "level": "alta",
+        "score": 0.8,
+        "reasons": [
+          "2 de 2 artigos confirmados no corpus."
+        ]
+      },
+      "validation_issues": [],
+      "legal_basis_count": 2,
+      "verified_articles": [
+        {
+          "article": "300",
+          "diploma": "Lei Geral do Trabalho (Lei 12/23)",
+          "diploma_slug": "lei-geral-do-trabalho-lei-12-23",
+          "status": "mismatched_page",
+          "page": 157,
+          "chunk_text": "artigo 310.º\n6. \u0007Em caso de não concordância do empregador no pagamento da indemniza­\nção prevista no número anterior, cabe recurso aos tribunais nos termos da lei.\n7. \u0007Aplica-se o disposto no n.º 2 do artigo 300.º sempre que o trabalhador \nrescinda o contrato invocando justa causa com os fundamentos referidos \nno n.º 2 do presente artigo e estes sejam comprovadamente falsos."
+        },
+        {
+          "article": "310",
+          "diploma": "Lei Geral do Trabalho (Lei 12/23)",
+          "diploma_slug": "lei-geral-do-trabalho-lei-12-23",
+          "status": "mismatched_page",
+          "page": 157,
+          "chunk_text": "artigo 310.º\n6. \u0007Em caso de não concordância do empregador no pagamento da indemniza­\nção prevista no número anterior, cabe recurso aos tribunais nos termos da lei.\n7. \u0007Aplica-se o disposto no n.º 2 do artigo 300.º sempre que o trabalhador \nrescinda o contrato invocando justa causa com os fundamentos referidos \nno n.º 2 do presente artigo e estes sejam comprovadamente falsos."
+        }
+      ],
+      "classification_branch": "laboral",
+      "classification_audience": "leigo"
+    },
+    "Leigo 2 (Familia)": {
+      "label": "Leigo 2 (Familia)",
+      "question": "Estou a divorciar-me e tenho dois filhos menores. Com quem ficam as criancas? A vontade deles conta para o tribunal?",
+      "status_code": 200,
+      "latency_seconds": 15.317,
+      "answer": "# Análise Jurídica sobre a Guarda de Filhos Menores em Caso de Divórcio\n\nO divórcio é um processo que, além de envolver a dissolução da união conjugal, traz consigo a necessidade de decidir sobre a guarda dos filhos menores. De acordo com o Código da Família angolano, especificamente no Artigo 81., os efeitos do divórcio nas relações pessoais, incluindo a guarda dos filhos, são relevantes e devem ser considerados com a máxima atenção. A guarda pode ser atribuída a um dos progenitores ou, em situações específicas, pode ser estabelecida a guarda conjunta, dependendo do que for considerado mais benéfico para o bem-estar da criança.\n\n### Vontade dos Filhos Menores\nA vontade dos filhos menores, embora seja um aspecto importante a ser considerado, não é o único critério que o tribunal utiliza para decidir sobre a guarda. O Artigo 133. do Código da Família estabelece que a decisão sobre a guarda deve ser tomada tendo em conta o interesse superior da criança. Isso implica que, mesmo que os filhos expressem uma preferência, o tribunal avaliará essa vontade à luz de outros fatores, como a capacidade de cada progenitor em proporcionar um ambiente seguro e saudável, a estabilidade emocional e financeira, e a continuidade das relações familiares.\n\n### Processo Judicial e Considerações Práticas\nNo processo de divórcio, é fundamental que os progenitores apresentem ao tribunal um plano de parentalidade que detalhe como será a convivência e a educação dos filhos após a separação. O tribunal, ao decidir sobre a guarda, pode ouvir o Conselho de Família e, em alguns casos, até mesmo realizar entrevistas com os menores, dependendo da sua idade e maturidade. É importante que os progenitores estejam preparados para demonstrar que a solução proposta é a que melhor atende aos interesses dos filhos. Além disso, o divórcio por mútuo acordo, conforme mencionado no Artigo 81., só pode ser decretado se ambos os progenitores concordarem com os termos da guarda, o que pode facilitar o processo e minimizar o impacto emocional sobre as crianças.\n\nEm suma, a guarda dos filhos menores em caso de divórcio é uma questão complexa que envolve a consideração do interesse superior da criança, a vontade dos progenitores e a capacidade de cada um em proporcionar um ambiente adequado. É aconselhável que os progenitores busquem orientação jurídica para assegurar que os seus direitos e os interesses dos filhos sejam devidamente protegidos durante este processo.",
+      "answer_length_chars": 2458,
+      "answer_mode": "grounded",
+      "provider_used": "openrouter",
+      "num_sources": 2,
+      "confidence": {
+        "level": "baixa",
+        "score": 0.24,
+        "reasons": [
+          "Nenhum artigo citado foi confirmado no corpus indexado.",
+          "Confiança limitada — menos de metade dos artigos verificados."
+        ]
+      },
+      "validation_issues": [],
+      "legal_basis_count": 2,
+      "verified_articles": [],
+      "classification_branch": "familia",
+      "classification_audience": "tecnico"
+    },
+    "Leigo 3 (Terras)": {
+      "label": "Leigo 3 (Terras)",
+      "question": "Vivo numa casa ha 20 anos num terreno que era dos meus pais. Nao tenho documentos. Posso ser despejado? O que devo fazer para legalizar?",
+      "status_code": 200,
+      "latency_seconds": 19.2,
+      "answer": "# Análise Jurídica sobre a Posse e Legalização de Terreno em Angola\n\nA situação apresentada envolve a posse de um terreno por um período significativo de 20 anos, sem a devida documentação formal. Em Angola, a posse é um conceito que pode ser protegido, mesmo na ausência de títulos formais, desde que se prove a sua continuidade e a intenção de ser proprietário. O Artigo 40 da Lei de Terras (Lei 9/04) estabelece que a ocupação precária pode ser reconhecida, mas é fundamental entender que a falta de documentação pode complicar a situação legal do possuidor.\n\n### Possibilidade de Despejo\nA possibilidade de despejo depende de vários fatores, incluindo a titularidade do terreno e a forma como a posse foi exercida. Se o terreno pertencia aos seus pais e você reside nele há 20 anos, pode argumentar que possui um direito de posse, mas isso não garante proteção absoluta contra um eventual despejo, especialmente se houver um proprietário formal que reivindique o terreno. A lei angolana permite que o Estado ou autarquias locais celebrem contratos de arrendamento ou concessão de direitos fundiários, o que pode afetar a sua situação. Portanto, é aconselhável que você busque orientação legal para avaliar a sua posição e as possíveis ações a serem tomadas.\n\n### Passos para Legalização\nPara legalizar a sua situação, considere os seguintes passos práticos:\n1. **Reunir Documentação**: Junte qualquer documentação que possa comprovar a sua posse, como contas de serviços públicos, testemunhos de vizinhos ou qualquer outro documento que demonstre a sua residência contínua no local.\n2. **Consultar um Advogado**: Procure um advogado especializado em direito imobiliário ou de terras. Ele poderá orientá-lo sobre como proceder com a legalização da sua posse e a possibilidade de obter um título de propriedade.\n3. **Dirigir-se à Administração Local**: Visite a administração local ou o serviço de urbanismo da sua área para obter informações sobre o processo de legalização de terrenos. Eles poderão fornecer orientações sobre os requisitos específicos e os documentos necessários para formalizar a sua posse.\n4. **Formalizar a Solicitação**: Após reunir a documentação e obter as orientações necessárias, formalize a sua solicitação junto das autoridades competentes, seguindo os procedimentos estabelecidos pela Lei de Terras.\n\n### Considerações Finais\nÉ importante agir rapidamente, pois a inação pode levar a complicações adicionais, incluindo o risco de despejo. Cada caso é único, e a análise detalhada da sua situação específica por um profissional é essencial para garantir que os seus direitos sejam protegidos. [Nota: baseado no conhecimento geral do Direito Angolano - verificar fonte oficial].",
+      "answer_length_chars": 2708,
+      "answer_mode": "grounded",
+      "provider_used": "openrouter",
+      "num_sources": 1,
+      "confidence": {
+        "level": "alta",
+        "score": 0.7,
+        "reasons": [
+          "1 de 1 artigos confirmados no corpus."
+        ]
+      },
+      "validation_issues": [
+        {
+          "code": "branch_mismatch",
+          "message": "A fonte oficial dominante não coincide com o ramo jurídico principal classificado.",
+          "severity": "high"
+        }
+      ],
+      "legal_basis_count": 1,
+      "verified_articles": [
+        {
+          "article": "40",
+          "diploma": "Lei de Terras (Lei 9/04)",
+          "diploma_slug": "lei-terras-9-04",
+          "status": "confirmed",
+          "page": 11,
+          "chunk_text": "ARTIGO 40*\nlei, designadamente com a area e a classificacao do terreno\n(urpad ogšutror p orrar)\ne com  praz pelo qual haja sido constituido o direito de\nocupagao precaria.\n1. E admissfvel a constiluic&o, pela Estado ou pelas\nautarquias locais, sobre os terrenos rurais e urbanos integra\nCAPITULO III\ndos no seu dominio privado, atraves de contrato dc arrenda\nConcessao de Direios Fundiarios\nmento celebrado por tempo determinado, de um direito de\nocupacao precaria para a construgao de instalacöes na"
+        }
+      ],
+      "classification_branch": "civil",
+      "classification_audience": "leigo"
+    },
+    "Prof. 1 (Civil)": {
+      "label": "Prof. 1 (Civil)",
+      "question": "Quais sao os pressupostos da responsabilidade civil extracontratual previstos no Codigo Civil Angolano, e como se articula o regime da culpa com a causalidade adequada na fixacao da indemnizacao por danos futuros?",
+      "status_code": 200,
+      "latency_seconds": 17.12,
+      "answer": "# Análise Jurídica sobre a Responsabilidade Civil Extracontratual no Código Civil Angolano\n\nA responsabilidade civil extracontratual, conforme prevista no Código Civil Angolano, está fundamentada no princípio geral estabelecido no Artigo 483.º. Este artigo determina que qualquer pessoa que, com dolo ou mera culpa, viole ilicitamente o direito de outrem ou qualquer disposição legal destinada a proteger interesses alheios, é obrigada a indemnizar o lesado pelos danos resultantes dessa violação. Assim, os pressupostos da responsabilidade civil extracontratual incluem a existência de um ato ilícito, a culpa do agente (dolo ou culpa), e a ocorrência de danos que devem ser reparados. É importante ressaltar que a obrigação de indemnizar pode existir independentemente de culpa em casos específicos previstos na lei, o que amplia a responsabilidade do agente em determinadas situações.\n\nA articulação entre o regime da culpa e a causalidade adequada na fixação da indemnização por danos futuros é um aspecto crucial na análise da responsabilidade civil. O Artigo 487.º estabelece que é ao lesado que incumbe provar a culpa do autor da lesão, salvo havendo presunção legal de culpa. A culpa é apreciada pela diligência de um bom pai de família, considerando as circunstâncias de cada caso. Portanto, para que a indemnização por danos futuros seja fixada, é necessário demonstrar não apenas a culpa do agente, mas também a relação de causalidade entre a conduta do agente e os danos sofridos pelo lesado. Essa relação causal deve ser adequada, ou seja, deve ser demonstrado que os danos eram uma consequência previsível da conduta do agente.\n\nAlém disso, a avaliação dos danos futuros deve considerar a natureza dos mesmos e a sua mensuração, o que pode incluir danos materiais e não materiais. A jurisprudência angolana tem enfatizado a necessidade de uma análise cuidadosa das circunstâncias que envolvem cada caso, de modo a garantir que a indemnização seja justa e proporcional aos danos efetivamente sofridos. Assim, a responsabilidade civil extracontratual no contexto angolano exige uma abordagem rigorosa e fundamentada, que considere tanto os pressupostos legais como as especificidades de cada situação concreta.",
+      "answer_length_chars": 2222,
+      "answer_mode": "grounded",
+      "provider_used": "openrouter",
+      "num_sources": 1,
+      "confidence": {
+        "level": "alta",
+        "score": 0.8,
+        "reasons": [
+          "2 de 2 artigos confirmados no corpus."
+        ]
+      },
+      "validation_issues": [],
+      "legal_basis_count": 2,
+      "verified_articles": [
+        {
+          "article": "483",
+          "diploma": "Codigo Civil",
+          "diploma_slug": "codigo-civil",
+          "status": "confirmed",
+          "page": 64,
+          "chunk_text": "SECÇÃO V - Responsabilidade civil \nSUBSECÇÃO I - Responsabilidade por factos ilícitos \nArt.º 483º - Princípio geral \n1. Aquele que, com dolo ou mera culpa, violar ilicitamente o direito de outrem ou \nqualquer disposição legal destinada a proteger interesses alheios fica obrigado a \nindemnizar o lesado pelos danos resultantes da violação. \n2. Só existe obrigação de indemnizar independentemente de culpa nos casos \nespecificados na lei. \nArt.º 484º - Ofensa do crédito ou do bom nome \nQuem afirmar o"
+        },
+        {
+          "article": "483",
+          "diploma": "Codigo Civil",
+          "diploma_slug": "codigo-civil",
+          "status": "confirmed",
+          "page": 64,
+          "chunk_text": "SECÇÃO V - Responsabilidade civil \nSUBSECÇÃO I - Responsabilidade por factos ilícitos \nArt.º 483º - Princípio geral \n1. Aquele que, com dolo ou mera culpa, violar ilicitamente o direito de outrem ou \nqualquer disposição legal destinada a proteger interesses alheios fica obrigado a \nindemnizar o lesado pelos danos resultantes da violação. \n2. Só existe obrigação de indemnizar independentemente de culpa nos casos \nespecificados na lei. \nArt.º 484º - Ofensa do crédito ou do bom nome \nQuem afirmar o"
+        }
+      ],
+      "classification_branch": "civil",
+      "classification_audience": "tecnico"
+    },
+    "Prof. 2 (Penal)": {
+      "label": "Prof. 2 (Penal)",
+      "question": "Em que circunstancias se configura o crime de burla qualificada em Angola? Quais sao os elementos objetivos e subjetivos do tipo e qual a moldura penal aplicavel?",
+      "status_code": 200,
+      "latency_seconds": 17.797,
+      "answer": "# Análise Jurídica sobre o Crime de Burla Qualificada em Angola\n\nO crime de burla qualificada, conforme previsto no Código Penal Angolano, é um delito que se caracteriza pela obtenção de vantagem patrimonial indevida, através de artifícios ou enganos. Para que se configure este crime, é necessário que estejam presentes tanto os elementos objetivos quanto os subjetivos do tipo penal. Os elementos objetivos referem-se à ação de enganar a vítima, utilizando-se de meios fraudulentos, enquanto os elementos subjetivos dizem respeito à intenção dolosa do agente, ou seja, a vontade de enganar e obter vantagem.\n\n### Elementos Objetivos e Subjetivos\nOs elementos objetivos do crime de burla qualificada incluem a realização de atos que induzam a vítima a erro, levando-a a realizar um ato que resulte em prejuízo patrimonial. Isso pode ocorrer, por exemplo, através da apresentação de documentos falsos ou da utilização de informações enganosas. Por outro lado, os elementos subjetivos envolvem a consciência e a vontade do agente em praticar o ato ilícito, caracterizando-se pelo dolo, que é a intenção de causar dano à vítima e obter vantagem indevida. A combinação desses elementos é essencial para a configuração do crime, sendo que a ausência de qualquer um deles pode levar à atipicidade da conduta.\n\n### Moldura Penal Aplicável\nA moldura penal para o crime de burla qualificada é estabelecida pelo Código Penal Angolano, que prevê penas que variam conforme a gravidade do ato e as circunstâncias em que foi cometido. A pena pode incluir prisão e multa, sendo que a duração da pena de prisão pode ser aumentada em casos de agravantes, como a utilização de meios violentos ou a prática do crime em grupo. É importante ressaltar que a aplicação da pena deve observar os princípios da proporcionalidade e da individualização da pena, considerando as circunstâncias do caso concreto e a personalidade do agente. A previsão de penas mais severas para a burla qualificada reflete a necessidade de proteção do patrimônio e da confiança nas relações sociais e comerciais.\n\nEm suma, a configuração do crime de burla qualificada em Angola exige a presença de elementos objetivos e subjetivos bem definidos, e a moldura penal aplicável é rigorosa, refletindo a gravidade da ofensa ao patrimônio alheio. Para uma análise mais aprofundada, recomenda-se a consulta ao Código Penal e a jurisprudência pertinente, a fim de compreender as nuances e as interpretações que podem surgir em casos concretos.",
+      "answer_length_chars": 2490,
+      "answer_mode": "grounded_with_caveat",
+      "provider_used": "openrouter",
+      "num_sources": 1,
+      "confidence": {
+        "level": "media",
+        "score": 0.5,
+        "reasons": [
+          "Nenhum artigo citado foi confirmado no corpus indexado.",
+          "Confiança limitada — menos de metade dos artigos verificados."
+        ]
+      },
+      "validation_issues": [
+        {
+          "code": "penal_relevance_gap",
+          "message": "A cobertura penal recuperada ainda não isola um fundamento penal material suficientemente forte para alta confiança.",
+          "severity": "medium"
+        }
+      ],
+      "legal_basis_count": 1,
+      "verified_articles": [
+        {
+          "article": "263",
+          "diploma": "codigo-penal-lei-38-20",
+          "diploma_slug": "codigo-penal-lei-38-20",
+          "status": "not_found",
+          "page": null,
+          "chunk_text": null
+        }
+      ],
+      "classification_branch": "penal",
+      "classification_audience": "tecnico"
+    },
+    "Prof. 3 (Fiscal)": {
+      "label": "Prof. 3 (Fiscal)",
+      "question": "Uma empresa angolana que deixou de pagar impostos durante 3 anos pode ainda ser autuada pela Autoridade Tributaria? Qual o prazo prescricional aplicavel segundo o Codigo Geral Tributario?",
+      "status_code": 200,
+      "latency_seconds": 16.609,
+      "answer": "# Análise Jurídica sobre a Autuação de uma Empresa por Impostos em Atraso\n\nA questão da autuação de uma empresa angolana que deixou de pagar impostos durante três anos é regida pelo Código Geral Tributário, especificamente no que se refere ao prazo prescricional para a ação da Autoridade Tributária. De acordo com o Artigo 56.º do Código Geral Tributário (Lei 21/14), a prescrição da ação tributária ocorre após um período de cinco anos, contados a partir do termo do ano em que o imposto deveria ter sido pago. Portanto, uma empresa que não pagou impostos durante três anos ainda pode ser autuada, uma vez que a prescrição não se completou.\n\n### Prazo Prescricional\nO prazo prescricional de cinco anos é um aspecto fundamental a ser considerado. Este prazo é aplicável a todas as ações de cobrança de tributos, incluindo a autuação por falta de pagamento. Assim, se a empresa deixou de pagar impostos durante três anos, a Autoridade Tributária ainda tem um prazo de dois anos para efetuar a autuação, desde que não tenha ocorrido qualquer interrupção ou suspensão da prescrição, como a instauração de um processo de execução fiscal ou a notificação do contribuinte sobre a dívida tributária.\n\n### Consequências Práticas\nÉ importante ressaltar que, além da possibilidade de autuação, a empresa poderá enfrentar outras consequências, como a aplicação de juros indemnizatórios e multas, que também são reguladas pelo Código Geral Tributário. A taxa de juros indemnizatórios é fixada em 4% ao ano, contados desde a data em que o imposto deveria ter sido pago até a data em que for efetivamente pago ou restituído ao contribuinte. Portanto, a empresa deve estar ciente de que a regularização da sua situação tributária não apenas implica no pagamento do valor principal devido, mas também na quitação de juros e possíveis penalidades.\n\nEm suma, a empresa que deixou de pagar impostos durante três anos pode sim ser autuada pela Autoridade Tributária, tendo em vista que o prazo prescricional de cinco anos ainda não se esgotou. É aconselhável que a empresa busque regularizar sua situação o quanto antes, a fim de evitar complicações adicionais e encargos financeiros.",
+      "answer_length_chars": 2165,
+      "answer_mode": "grounded",
+      "provider_used": "openrouter",
+      "num_sources": 1,
+      "confidence": {
+        "level": "media",
+        "score": 0.4,
+        "reasons": [
+          "Nenhum artigo citado foi confirmado no corpus indexado.",
+          "Confiança limitada — menos de metade dos artigos verificados."
+        ]
+      },
+      "validation_issues": [
+        {
+          "code": "unverified_article",
+          "message": "1 artigo(s) citados não foram confirmados no corpus indexado.",
+          "severity": "medium"
+        }
+      ],
+      "legal_basis_count": 1,
+      "verified_articles": [
+        {
+          "article": "56",
+          "diploma": "codigo-geral-tributario-21-14",
+          "diploma_slug": "codigo-geral-tributario-21-14",
+          "status": "not_found",
+          "page": null,
+          "chunk_text": null
+        }
+      ],
+      "classification_branch": "tributario",
+      "classification_audience": "tecnico"
+    }
+  }
+}
