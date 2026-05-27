@@ -130,7 +130,14 @@ class LegalComposer:
     ) -> str:
         context_blocks: list[str] = []
         allowed_articles: list[str] = []
-        for chunk in retrieved_chunks[:8]:
+
+        # Separate and order: user docs first, then official
+        user_chunks = [c for c in retrieved_chunks if c.source_scope != "official"]
+        official_chunks = [c for c in retrieved_chunks if c.source_scope == "official"]
+        total_slots = 10 if user_chunks else 8
+        ordered = (user_chunks + official_chunks)[:total_slots]
+
+        for chunk in ordered:
             branch = (chunk.metadata or {}).get("legal_branch", "indeterminado")
             source_type = (
                 "fonte oficial"
@@ -147,7 +154,9 @@ class LegalComposer:
                     str(article_main).split(",")[0].strip().replace(".", "")
                 )
             context_blocks.append(
-                f"[{source_type} | ramo={branch} | diploma={chunk.title} | pagina={chunk.page or 'N/D'} | artigo_principal={article_main} | artigo_contexto={chunk.article_number or 'N/D'}]\n{chunk.text[:500]}"
+                f"[{source_type} | ramo={branch} | diploma={chunk.title} | pagina={chunk.page or 'N/D'} | artigo_principal={article_main} | artigo_contexto={chunk.article_number or 'N/D'}]"
+                f"{' [PODE CONTER MULTIPLOS ARTIGOS — LEIA O TEXTO COMPLETO]' if chunk.source_scope == 'user_upload' else ''}"
+                f"\n{chunk.text[:1500]}"
             )
 
         whitelist = sorted({item for item in allowed_articles if item})
@@ -215,12 +224,27 @@ class LegalComposer:
             "  - cited_articles: Lista de artigos citados no texto.\n"
             "  - cited_diplomas: Lista de diplomas citados no texto.\n"
             "\n"
+            "REGRAS DE PRIORIDADE DO DOCUMENTO DO UTILIZADOR:\n"
+            "Antes de responderes, classifica a intencao do utilizador num destes 3 modos:\n"
+            "  MODO EXCLUSIVO: A pergunta pede resposta baseada APENAS no documento do utilizador.\n"
+            "    -> Usa SO o documento do utilizador. Leis oficiais sao IGNORADAS.\n"
+            "  MODO COMPARATIVO: A pergunta compara, contrasta ou questiona a conformidade do documento face a lei.\n"
+            "    -> Explica 1) o que diz o documento, 2) o que diz a lei, 3) as diferencas ou conformidades.\n"
+            "  MODO GERAL: A pergunta e generica, sem foco exclusivo no documento anexo.\n"
+            "    -> Documento do utilizador como fonte primaria, complementado por leis oficiais.\n"
+            'Se o utilizador menciona "artigo X" ou "documento" sem pedir comparacao, assume Modo Exclusivo.\n'
+            'Se a pergunta contem palavras como "cumpre", "de acordo", "em conformidade", "legal", "regular", "valido", "lei geral", "codigo", "legislacao" referindo-se a leis externas ao documento, assume MODO COMPARATIVO. Neste modo, USA AMBAS as fontes: primeiro analisa o que diz o documento do utilizador, depois consulta a lei angolana aplicavel, e por fim compara/destaca diferencas.\n'
+            "NAO CORRIJAS o documento com leis reais no Modo Exclusivo. No Modo Comparativo, deves apontar divergencias.\n"
+            'IMPORTANTE: Os chunks de documentos do utilizador podem conter MULTIPLOS artigos num unico bloco. O metadata "artigo_principal" indica apenas o PRIMEIRO artigo do chunk. Le sempre o TEXTO COMPLETO do chunk.\n'
+            'So responde "nao encontrei" se a informacao nao existir nos chunks do documento do utilizador.\n'
+            'PEDIDOS DE RESUMO/SUMARIZACAO: Se o utilizador pedir "resuma", "pontos chave", "resumo", "simplifique", extrai e lista APENAS os pontos principais do documento do utilizador. Nao pecas mais informacao — o documento ja foi fornecido no contexto. Responde com uma lista estruturada dos pontos essenciais encontrados.\n'
+            "\n"
             "REGRAS CRITICAS DE ANALISE JURIDICA:\n"
             "1. USA APENAS O CONTEXTO COMO BASE. Nao completes com conhecimento geral do modelo.\n"
             "2. SE O CONTEXTO NAO CONFIRMAR O PONTO EXACTO, DIZ ISSO EXPRESSAMENTE. Podes explicar o limite do material recuperado, mas nao inventes resposta normativa.\n"
             "3. NUNCA INVENTES artigos, numeros, custos, prazos, orgaos competentes ou formulas do tipo 'em geral'.\n"
             "4. COBERTURA COMPLETA: responde a pergunta com o que o contexto efectivamente permite afirmar. Se houver lacuna, identifica a lacuna.\n"
-            "5. CITACOES: Sempre que mencionares um artigo sustentado no contexto, escreve a referencia EXATAMENTE neste formato (COM colchetes): [[Art. X, Diploma Y, p. Z]]. Exemplo: [[Art. 300.o, Lei Geral do Trabalho, p. 155]]. O sistema converte para apresentacao visual.\n"
+            "5. CITACOES: Sempre que mencionares um artigo sustentado no contexto, escreve a referencia EXACTAMENTE neste formato (COM colchetes): [[Art. X, Diploma Y, p. Z]]. Exemplo: [[Art. 300.o, Lei Geral do Trabalho, p. 155]]. O sistema converte para apresentacao visual.\n"
             "6. SEM REDUNDANCIA: nao facas listas finais de fontes; o sistema mostra isso na interface.\n"
             "7. RECUPERACAO E APOLOGIA: se for uma CORRECCAO, inicia a rich_content com um pedido de desculpas profissional.\n"
             "8. ESTILO: Portugues de Angola, formal, claro e proporcional a complexidade.\n"
@@ -235,7 +259,15 @@ class LegalComposer:
             f"Ramo: {classification.main_branch} | Audiencia: {classification.audience} | Topico: {classification.topic_route}\n"
             f"Pergunta do utilizador: {question}\n"
             f"Historico resumido: {history}\n\n"
-            "Contexto juridico recuperado:\n" + "\n\n---\n\n".join(context_blocks)
+            "Contexto juridico recuperado:\n"
+            + "\n\n---\n\n".join(context_blocks)
+            + (
+                "\n\n[INSTRUCAO: O utilizador pediu um RESUMO do documento acima. NAO pecas mais informacao. Extrai e lista os pontos principais do documento. Responde diretamente.]"
+                if "resum" in question.lower()
+                or "pontos chave" in question.lower()
+                or "simplif" in question.lower()
+                else ""
+            )
         )
 
     def parse_llm_json(self, raw_answer: str) -> LLMAnswerDraft:

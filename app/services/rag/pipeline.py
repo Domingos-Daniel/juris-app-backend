@@ -3,8 +3,9 @@ from __future__ import annotations
 import asyncio
 import logging
 import re
+import sys
 import time as _time
-from dataclasses import asdict
+from dataclasses import asdict, replace
 
 from cachetools import TTLCache
 from app.core.config import get_settings
@@ -769,10 +770,13 @@ class RAGPipeline:
                 )
         # Se for uma transformação (ex: "diz em termos simples"), podemos reutilizar o contexto do histórico
         # ou apenas permitir que o LLM processe a resposta anterior sem exigir novos documentos.
+        if active_document_id and classification.is_transformation:
+            classification = classification.model_copy(
+                update={"is_transformation": False}
+            )
         is_transformation = classification.is_transformation
 
         if is_transformation:
-            # Em transformações, não precisamos de nova pesquisa exaustiva
             retrieval = RetrievalResult(
                 classification=classification,
                 official_evidence=[],
@@ -793,19 +797,25 @@ class RAGPipeline:
                 ]
             )
             all_evidences: list = []
+            all_user_evidences: list = []
             for partial in results:
                 all_evidences.extend(partial.official_evidence)
+                all_user_evidences.extend(partial.user_evidence)
 
             if all_evidences:
                 all_evidences = sorted(
                     all_evidences, key=lambda e: e.score, reverse=True
                 )[:12]
+            combined_evidences = sorted(
+                all_evidences + all_user_evidences, key=lambda e: e.score, reverse=True
+            )[:12]
+            if combined_evidences:
                 retrieval = RetrievalResult(
                     classification=classification,
                     official_evidence=all_evidences,
-                    user_evidence=[],
+                    user_evidence=all_user_evidences,
                     missing_branches=[],
-                    retrieved_chunks=[e.chunk for e in all_evidences],
+                    retrieved_chunks=[e.chunk for e in combined_evidences],
                 )
             else:
                 retrieval = await legal_retrieval_service.retrieve(
@@ -1184,10 +1194,45 @@ class RAGPipeline:
             classification, retrieval, validation, verified_articles
         )
         sources = self._select_sources(retrieval, validation)
+        # Force user document sources when a document is active
+        if active_document_id and not any(
+            s.source_scope == "user_upload" for s in sources
+        ):
+            logger.info(
+                "Force-adding user doc sources (non-stream) for %s",
+                active_document_id[:8],
+            )
+            try:
+                for ev in retrieval.user_evidence:
+                    chunk = ev.chunk
+                    sources.append(
+                        SourceItem(
+                            title=chunk.title,
+                            source=chunk.source,
+                            link_original=chunk.link_original,
+                            deep_link=(
+                                f"{chunk.link_original}#page={chunk.page}"
+                                if chunk.link_original
+                                and chunk.page
+                                and "#page=" not in chunk.link_original
+                                else chunk.link_original
+                            ),
+                            page=chunk.page,
+                            article_number=chunk.article_number,
+                            law_status=chunk.law_status,
+                            excerpt=chunk.text[:780],
+                            attribution_text=chunk.text[:300] if chunk.text else None,
+                            source_scope=chunk.source_scope,
+                            document_id=chunk.document_id,
+                        )
+                    )
+            except Exception as exc:
+                logger.warning("Force-add sources (non-stream) failed: %s", exc)
         answer = legal_composer.compose_answer(
             classification, answer_draft, validation, confidence, sources
         )
         answer = legal_composer.sanitize_answer(answer)
+        answer = _normalize_brackets(answer)
         _tpp = _time.time() - _tpp
         logger.info("LLM:%.1fs postproc:%.1fs", _tllm, _tpp)
 
@@ -1397,7 +1442,7 @@ class RAGPipeline:
         preflight = await self.preflight_classify(
             query, provider, conversation_history, chat_id, user_id
         )
-        if preflight.get("needs_clarification"):
+        if preflight.get("needs_clarification") and not active_document_id:
             log.info("query is vague, returning clarifying mode: %s", query[:80])
             yield (
                 "data: "
@@ -1461,7 +1506,9 @@ class RAGPipeline:
         )
         _t1 = _time.perf_counter()
 
-        # Clarification gate
+        # Clarification gate — skip when user has an active document loaded
+        if active_document_id:
+            classification.needs_clarification = False
         if (
             not classification.needs_clarification
             and not classification.clarifying_questions
@@ -1509,6 +1556,12 @@ class RAGPipeline:
             normalized_query, history, classification
         )
         classification.query_text = search_query
+        # When a document is active, summarize/simplify is a normal query —
+        # the LLM will summarise based on the document context naturally.
+        if active_document_id and classification.is_transformation:
+            classification = classification.model_copy(
+                update={"is_transformation": False}
+            )
         is_transformation = classification.is_transformation
 
         # --- Phase 2: retrieval ---
@@ -1534,18 +1587,24 @@ class RAGPipeline:
                 ]
             )
             all_evidences: list = []
+            all_user_evidences: list = []
             for partial in results:
                 all_evidences.extend(partial.official_evidence)
+                all_user_evidences.extend(partial.user_evidence)
             if all_evidences:
                 all_evidences = sorted(
                     all_evidences, key=lambda e: e.score, reverse=True
                 )[:12]
+            combined_evidences = sorted(
+                all_evidences + all_user_evidences, key=lambda e: e.score, reverse=True
+            )[:12]
+            if combined_evidences:
                 retrieval = RetrievalResult(
                     classification=classification,
                     official_evidence=all_evidences,
-                    user_evidence=[],
+                    user_evidence=all_user_evidences,
                     missing_branches=[],
-                    retrieved_chunks=[e.chunk for e in all_evidences],
+                    retrieved_chunks=[e.chunk for e in combined_evidences],
                 )
             else:
                 retrieval = await legal_retrieval_service.retrieve(
@@ -1556,6 +1615,57 @@ class RAGPipeline:
                 )
             retrieval = self._filter_retrieval_by_branch(retrieval, classification)
         _t_retrieval_done = _time.perf_counter()
+
+        # Safety net — force user doc chunks into context when a document is active
+        try:
+            with open("/tmp/pipeline_debug.log", "a") as f:
+                f.write(
+                    f"[safety_net] active_doc={'YES' if active_document_id else 'NO'} user_ev_count={len(retrieval.user_evidence)} official_ev_count={len(retrieval.official_evidence)} chunks_count={len(retrieval.retrieved_chunks)}\n"
+                )
+                for ue in retrieval.user_evidence[:3]:
+                    f.write(
+                        f"  ue: bucket={ue.source_bucket} title={ue.chunk.title} src={ue.chunk.source_scope} score={ue.score:.1f}\n"
+                    )
+        except Exception:
+            pass
+        if active_document_id and not retrieval.user_evidence:
+            logger.info(
+                "User document not found in retrieval — force-fetching chunks for %s",
+                active_document_id[:8],
+            )
+            try:
+                from app.services.rag.retriever import retriever_service
+
+                force_chunks = await retriever_service.retrieve(
+                    normalized_query or "",
+                    where={"document_id": active_document_id},
+                )
+                if force_chunks:
+                    from app.services.legal.retrieval import _source_bucket
+
+                    evs = []
+                    for ch in force_chunks:
+                        evs.append(
+                            type(
+                                "Ev",
+                                (),
+                                {
+                                    "chunk": ch,
+                                    "score": 30.0,
+                                    "source_bucket": _source_bucket(ch),
+                                    "retrieval_reason": "force_user_doc",
+                                },
+                            )()
+                        )
+                    retrieval = replace(retrieval, user_evidence=evs)
+                    retrieval.retrieved_chunks = [
+                        e.chunk for e in evs
+                    ] + retrieval.retrieved_chunks
+                    logger.info(
+                        "Force-added %d user doc chunks to context", len(force_chunks)
+                    )
+            except Exception as exc:
+                logger.warning("Force-fetch user doc chunks failed: %s", exc)
 
         if not retrieval.retrieved_chunks and not is_transformation:
             answer_text = "Não encontrei contexto jurídico suficiente no índice actual para responder com segurança. Reformule a pergunta com mais detalhe, indique o diploma pretendido ou peça o artigo exacto a confirmar."
@@ -1635,6 +1745,36 @@ class RAGPipeline:
             classification, retrieval, validation, []
         )
         sources = self._select_sources(retrieval, validation)
+        if active_document_id and not any(
+            s.source_scope == "user_upload" for s in sources
+        ):
+            logger.info("Force-adding user doc sources for %s", active_document_id[:8])
+            try:
+                for ev in retrieval.user_evidence:
+                    chunk = ev.chunk
+                    sources.append(
+                        SourceItem(
+                            title=chunk.title,
+                            source=chunk.source,
+                            link_original=chunk.link_original,
+                            deep_link=(
+                                f"{chunk.link_original}#page={chunk.page}"
+                                if chunk.link_original
+                                and chunk.page
+                                and "#page=" not in chunk.link_original
+                                else chunk.link_original
+                            ),
+                            page=chunk.page,
+                            article_number=chunk.article_number,
+                            law_status=chunk.law_status,
+                            excerpt=chunk.text[:780],
+                            attribution_text=chunk.text[:300] if chunk.text else None,
+                            source_scope=chunk.source_scope,
+                            document_id=chunk.document_id,
+                        )
+                    )
+            except Exception as exc:
+                logger.warning("Force-add sources failed: %s", exc)
         answer = legal_composer.compose_answer(
             classification, answer_draft, validation, confidence, sources
         )

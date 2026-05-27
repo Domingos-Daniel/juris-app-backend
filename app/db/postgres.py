@@ -1109,10 +1109,12 @@ class PostgresManager:
         clauses: list[str] = []
         params: list[Any] = [query]
 
-        # FTS soft filter: extract OR-terms to narrow scan via GIN index
-        # Uses OR logic (match ANY term) — broad enough to preserve recall
-        # while reducing the full-table scan from 2000+ rows to ~50-200.
-        _fts_or_query = _build_fts_or_query(query)
+        # FTS soft filter: extract OR-terms to narrow scan via GIN index.
+        # Skipped when filtering by document_id (user doc retrieval) to avoid
+        # missing chunks due to FTS mismatch on test/simulated PDFs.
+        _fts_or_query = (
+            None if (where or {}).get("document_id") else _build_fts_or_query(query)
+        )
         if _fts_or_query:
             clauses.append("text_search @@ to_tsquery('portuguese', %s)")
             params.append(_fts_or_query)
