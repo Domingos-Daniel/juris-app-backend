@@ -51,9 +51,11 @@ def _clean(text: str) -> str:
 def _source_line(source: SourceItem) -> str:
     article = f", art. {source.article_number}" if source.article_number else ""
     page = f", pag. {source.page}" if source.page else ""
-    scope_tag = (
-        " (Documento do Utilizador)" if source.source_scope == "user_upload" else ""
-    )
+    scope_tag = ""
+    if source.source_scope == "user_upload":
+        scope_tag = " (Documento do Utilizador)"
+    elif source.source_kind == "jurisprudence":
+        scope_tag = " (Jurisprudencia)"
     return f"- {source.title}{article}{page}{scope_tag}"
 
 
@@ -138,11 +140,16 @@ class LegalComposer:
         ordered = (user_chunks + official_chunks)[:total_slots]
 
         for chunk in ordered:
-            branch = (chunk.metadata or {}).get("legal_branch", "indeterminado")
+            meta = chunk.metadata or {}
+            branch = meta.get("legal_branch", "indeterminado")
+            doc_kind = meta.get("document_kind", "")
+            is_juris = doc_kind == "jurisprudence"
             source_type = (
-                "fonte oficial"
-                if chunk.source_scope == "official"
-                else "documento do utilizador"
+                "documento do utilizador"
+                if chunk.source_scope == "user_upload"
+                else "jurisprudencia"
+                if is_juris
+                else "fonte oficial"
             )
             article_main = (
                 (chunk.metadata or {}).get("article_main")
@@ -238,6 +245,13 @@ class LegalComposer:
             'IMPORTANTE: Os chunks de documentos do utilizador podem conter MULTIPLOS artigos num unico bloco. O metadata "artigo_principal" indica apenas o PRIMEIRO artigo do chunk. Le sempre o TEXTO COMPLETO do chunk.\n'
             'So responde "nao encontrei" se a informacao nao existir nos chunks do documento do utilizador.\n'
             'PEDIDOS DE RESUMO/SUMARIZACAO: Se o utilizador pedir "resuma", "pontos chave", "resumo", "simplifique", extrai e lista APENAS os pontos principais do documento do utilizador. Nao pecas mais informacao — o documento ja foi fornecido no contexto. Responde com uma lista estruturada dos pontos essenciais encontrados.\n'
+            "\n"
+            "REGRAS PARA FONTES JURISPRUDENCIAIS:\n"
+            'Se o contexto contiver chunks identificados como "jurisprudencia", trata-os como fontes de autoridade persuasiva que mostram como os tribunais interpretam a lei, mas nao substituem a propria lei.\n'
+            "Quando usares jurisprudencia, cita o tribunal, numero do processo e data se disponiveis. Exemplo: 'O Tribunal Supremo, no Processo n.o 894/2019, decidiu que...'\n"
+            "Apresenta a decisao do tribunal (provido/negado/anulado) e a razao fundamental (ratio decidendi) de forma clara.\n"
+            "Se houver conflito entre a lei e a jurisprudencia, explica ambos os pontos de vista: o que diz a lei e como os tribunais a tem interpretado.\n"
+            "Nao inventes nomes de tribunais, numeros de processo ou datas que nao estejam no contexto.\n"
             "\n"
             "REGRAS CRITICAS DE ANALISE JURIDICA:\n"
             "1. USA APENAS O CONTEXTO COMO BASE. Nao completes com conhecimento geral do modelo.\n"

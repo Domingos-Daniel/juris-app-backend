@@ -10,6 +10,9 @@ from app.api.routes_chats import router as chats_router
 from app.api.routes_chat import router as chat_router
 from app.api.routes_docs import router as docs_router
 from app.api.routes_catalog import router as catalog_router
+from app.api.routes_voice import router as voice_router
+from app.api.routes_agent import router as agent_router
+from app.api.routes_tts import router as tts_router
 from app.core.config import get_settings
 from app.core.logger import configure_logging
 from app.db.postgres import postgres_manager
@@ -64,3 +67,6 @@ app.include_router(chat_router, prefix=settings.api_prefix)
 app.include_router(chats_router, prefix=settings.api_prefix)
 app.include_router(docs_router, prefix=settings.api_prefix)
 app.include_router(catalog_router, prefix=settings.api_prefix)
+app.include_router(voice_router)
+app.include_router(agent_router)
+app.include_router(tts_router)

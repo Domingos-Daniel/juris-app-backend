@@ -33,9 +33,10 @@ class SourceItem(BaseModel):
     deep_link: str | None = None
     page: int | None = None
     article_number: str | None = None
-    law_status: str = "Não verificado"
+    law_status: str = "Nao verificado"
     excerpt: str | None = None
     source_scope: str = "official"
+    source_kind: str | None = None
     document_id: str | None = None
     attribution_text: str | None = Field(
         default=None, description="Trecho do chunk recuperado que contém este artigo"

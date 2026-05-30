@@ -153,8 +153,12 @@ class PostgresManager:
                         id TEXT PRIMARY KEY,
                         name TEXT NOT NULL,
                         email TEXT,
+                        phone TEXT,
+                        password_hash TEXT NOT NULL DEFAULT '',
                         is_seeded BOOLEAN NOT NULL DEFAULT FALSE,
-                        created_at TIMESTAMPTZ NOT NULL
+                        ai_preferences JSONB NOT NULL DEFAULT '{}'::jsonb,
+                        created_at TIMESTAMPTZ NOT NULL,
+                        updated_at TIMESTAMPTZ
                     )
                     """
                 )
@@ -423,6 +427,93 @@ class PostgresManager:
                 (DEFAULT_USER_ID, DEFAULT_USER_NAME, None, utc_now_iso()),
             )
 
+    # ── User management ───────────────────────────────────────────
+
+    def register_user(
+        self, name: str, email: str, phone: str, password_hash: str
+    ) -> str | None:
+        self.initialize()
+        user_id = str(uuid.uuid4())
+        try:
+            with self.connection() as conn, conn.cursor() as cur:
+                cur.execute(
+                    """
+                    INSERT INTO users (id, name, email, phone, password_hash, created_at)
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                    """,
+                    (
+                        user_id,
+                        name,
+                        email or None,
+                        phone or None,
+                        password_hash,
+                        utc_now_iso(),
+                    ),
+                )
+            return user_id
+        except Exception:
+            return None
+
+    def get_user_by_email(self, email: str) -> dict | None:
+        self.initialize()
+        with self.connection() as conn, conn.cursor() as cur:
+            cur.execute(
+                "SELECT id, name, email, phone, password_hash, ai_preferences, is_seeded, created_at FROM users WHERE email = %s",
+                (email,),
+            )
+            row = cur.fetchone()
+            return dict(row) if row else None
+
+    def get_user_by_id(self, user_id: str) -> dict | None:
+        self.initialize()
+        with self.connection() as conn, conn.cursor() as cur:
+            cur.execute(
+                "SELECT id, name, email, phone, password_hash, ai_preferences, is_seeded, created_at FROM users WHERE id = %s",
+                (user_id,),
+            )
+            row = cur.fetchone()
+            return dict(row) if row else None
+
+    def update_user_profile(
+        self, user_id: str, name: str, email: str, phone: str
+    ) -> bool:
+        self.initialize()
+        try:
+            with self.connection() as conn, conn.cursor() as cur:
+                cur.execute(
+                    """UPDATE users SET name = %s, email = %s, phone = %s, updated_at = %s
+                       WHERE id = %s""",
+                    (name, email or None, phone or None, utc_now_iso(), user_id),
+                )
+            return True
+        except Exception:
+            return False
+
+    def update_user_preferences(self, user_id: str, prefs: dict) -> bool:
+        self.initialize()
+        try:
+            with self.connection() as conn, conn.cursor() as cur:
+                cur.execute(
+                    """UPDATE users SET ai_preferences = %s, updated_at = %s WHERE id = %s""",
+                    (json.dumps(prefs), utc_now_iso(), user_id),
+                )
+            return True
+        except Exception:
+            return False
+
+    def get_user_preferences(self, user_id: str) -> dict:
+        self.initialize()
+        with self.connection() as conn, conn.cursor() as cur:
+            cur.execute("SELECT ai_preferences FROM users WHERE id = %s", (user_id,))
+            row = cur.fetchone()
+            return row["ai_preferences"] if row and row.get("ai_preferences") else {}
+
+    def has_any_user(self) -> bool:
+        self.initialize()
+        with self.connection() as conn, conn.cursor() as cur:
+            cur.execute("SELECT 1 FROM users WHERE is_seeded = FALSE LIMIT 1")
+            return cur.fetchone() is not None
+
     def issue_auth_token(self, user_id: str, username: str, token: str) -> None:
         self.initialize()
         with self.connection() as conn, conn.cursor() as cur:
@@ -442,6 +533,13 @@ class PostgresManager:
         with self.connection() as conn, conn.cursor() as cur:
             cur.execute("SELECT 1 FROM auth_tokens WHERE token = %s", (token,))
             return cur.fetchone() is not None
+
+    def get_user_id_for_token(self, token: str) -> str | None:
+        self.initialize()
+        with self.connection() as conn, conn.cursor() as cur:
+            cur.execute("SELECT user_id FROM auth_tokens WHERE token = %s", (token,))
+            row = cur.fetchone()
+            return row["user_id"] if row else None
 
     def get_default_user_id(self) -> str:
         self.initialize()
@@ -1110,11 +1208,12 @@ class PostgresManager:
         params: list[Any] = [query]
 
         # FTS soft filter: extract OR-terms to narrow scan via GIN index.
-        # Skipped when filtering by document_id (user doc retrieval) to avoid
-        # missing chunks due to FTS mismatch on test/simulated PDFs.
-        _fts_or_query = (
-            None if (where or {}).get("document_id") else _build_fts_or_query(query)
+        # Skipped when where already restricts results (document_id, document_kind, etc.)
+        _has_targeted_filter = bool(where) and any(
+            k in ("document_id",) or k.startswith("metadata__")
+            for k in (where or {}).keys()
         )
+        _fts_or_query = None if _has_targeted_filter else _build_fts_or_query(query)
         if _fts_or_query:
             clauses.append("text_search @@ to_tsquery('portuguese', %s)")
             params.append(_fts_or_query)

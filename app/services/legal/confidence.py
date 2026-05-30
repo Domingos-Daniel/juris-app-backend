@@ -1,3 +1,5 @@
+"""Legal confidence scoring — meaningful 0-1 score based on retrieval quality."""
+
 from __future__ import annotations
 
 from app.services.legal.article_verifier import VerifiedArticle
@@ -25,144 +27,139 @@ class LegalConfidenceService:
             + validation.prudential_legal_basis
             if item.article
         )
-        total_cited = cited_count or len(verified) or 1
-        issue_codes = {issue.code for issue in validation.issues}
-
-        score = 0.10
-
-        if retrieval.official_evidence:
-            score += 0.12
-        if validation.confirmed_legal_basis:
-            score += 0.12
-
+        total_cited = cited_count or max(verified_count, 1)
         verification_ratio = min(verified_count / max(total_cited, 1), 1.0)
-        score += verification_ratio * 0.46
+        issue_codes = {issue.code for issue in validation.issues}
+        evidence_count = len(retrieval.official_evidence)
 
-        if validation.answer_mode == "refused":
-            score = min(score, 0.40)
-        elif validation.answer_mode == "limited":
-            score = min(score, 0.50)
-        elif verification_ratio < 0.3:
-            score = min(score, 0.60)
+        # --- Base score from retrieval presence ---
+        score = 0.30 if evidence_count > 0 else 0.10
 
-        if not verification_ratio:
-            score -= 0.10
+        # --- Retrieval quality (distance-based) ---
+        if evidence_count > 0:
+            distances = [
+                ev.chunk.distance
+                for ev in retrieval.official_evidence[:6]
+                if ev.chunk.distance is not None
+            ]
+            if distances:
+                avg_distance = sum(distances) / len(distances)
+                # cosine distance: 0.0 = identical, 0.2 = very close, 1.0 = orthogonal
+                if avg_distance < 0.15:
+                    score += 0.35
+                elif avg_distance < 0.25:
+                    score += 0.25
+                elif avg_distance < 0.40:
+                    score += 0.15
+                else:
+                    score += 0.05
 
-        if validation.unsupported_articles:
-            score -= 0.30
+        # --- Evidence count ---
+        if evidence_count >= 6:
+            score += 0.10
+        elif evidence_count >= 3:
+            score += 0.06
 
+        # --- Legal basis confirmed ---
+        if validation.confirmed_legal_basis:
+            score += 0.10
+
+        # --- Verification bonus (if articles were verified) ---
+        if verification_ratio > 0:
+            score += verification_ratio * 0.12
+
+        # --- Branch alignment bonus ---
         if classification.main_branch not in ("indeterminado", "misto"):
             from app.services.legal.retrieval import _chunk_branch
 
-            off_branch = sum(
+            on_branch = sum(
                 1
                 for ev in retrieval.official_evidence
-                if _chunk_branch(ev.chunk) != classification.main_branch
+                if _chunk_branch(ev.chunk) == classification.main_branch
             )
-            mismatch_ratio = off_branch / max(len(retrieval.official_evidence), 1)
-            if mismatch_ratio > 0.3:
-                score -= round(mismatch_ratio * 0.18, 3)
+            if on_branch >= 3:
+                score += 0.08
+            elif on_branch >= 1:
+                score += 0.04
 
-        for pen in 0.08, 0.12:
-            if "penal_relevance_gap" in issue_codes:
-                score -= pen
-            if "processual_specificity_gap" in issue_codes:
-                score -= pen
-        if (
-            "strict_corpus_missing" in issue_codes
-            or "strict_corpus_mismatch" in issue_codes
-        ):
-            score -= 0.10
-        if (
-            "strict_confirmation_gap" in issue_codes
-            or "weak_article_confirmation" in issue_codes
-        ):
-            score -= 0.10
-        if "branch_gap" in issue_codes:
-            score -= 0.15
-        if "branch_mismatch" in issue_codes:
-            score -= 0.18
-        if "no_official_support" in issue_codes:
-            score -= 0.20
-        if "followup_anchor_unresolved" in issue_codes:
-            score -= 0.22
-        if "normative_conflict" in issue_codes or "citator_gap" in issue_codes:
-            score -= 0.18
-        if "vigency_unverified" in issue_codes:
-            score -= 0.15
-        if "unsupported_article" in issue_codes or "unverified_article" in issue_codes:
-            score -= 0.05
+        # --- Penalties ---
+        issue_penalties = {
+            "no_official_support": 0.25,
+            "followup_anchor_unresolved": 0.22,
+            "normative_conflict": 0.18,
+            "citator_gap": 0.18,
+            "branch_mismatch": 0.15,
+            "branch_gap": 0.12,
+            "penal_relevance_gap": 0.08,
+            "processual_specificity_gap": 0.08,
+            "strict_corpus_missing": 0.10,
+            "strict_corpus_mismatch": 0.10,
+        }
+        for code, penalty in issue_penalties.items():
+            if code in issue_codes:
+                score -= penalty
+
+        if validation.unsupported_articles:
+            score -= 0.25
         if validation.source_cross_contamination:
             score -= 0.05
         if validation.missing_branches:
-            score -= 0.08
+            score -= 0.06
 
-        if not retrieval.official_evidence:
+        # --- Mode adjustments ---
+        if validation.answer_mode == "refused":
+            score = min(score, 0.30)
+        elif validation.answer_mode == "limited":
             score = min(score, 0.45)
-        if (
-            classification.requires_strict_corpus_match
-            and not validation.sufficient_legal_support
-        ):
-            score = min(score, 0.55)
-        if any(
-            code in issue_codes
-            for code in (
-                "followup_anchor_unresolved",
-                "normative_conflict",
-                "citator_gap",
-                "vigency_unverified",
-            )
-        ):
-            score = min(score, 0.45)
-        if (
-            validation.answer_mode == "grounded_with_caveat"
-            and retrieval.official_evidence
-        ):
-            score = min(max(score, 0.35), 0.55)
-        if (
-            validation.answer_mode == "grounded"
-            and len(retrieval.official_evidence) <= 2
-        ):
-            score = max(score, 0.40)
-        if validation.answer_mode in {"limited", "grounded_with_caveat"}:
-            score = min(score, 0.55)
+        elif validation.answer_mode == "grounded_with_caveat":
+            score = min(score, 0.60)
 
-        if (
-            verification_ratio > 0.8
-            and validation.sufficient_legal_support
-            and validation.answer_mode == "grounded"
-        ):
-            score = max(score, 0.70)
-        elif verification_ratio > 0.4 and validation.answer_mode == "grounded":
-            score = max(score, 0.45)
+        # --- Clamp and determine level ---
+        score = max(0.05, min(1.0, score))
 
-        score = max(0.0, min(1.0, score))
         if score >= 0.70:
             level = "alta"
-        elif score >= 0.40:
+        elif score >= 0.45:
             level = "media"
         else:
             level = "baixa"
 
+        # --- Reasons ---
         reasons: list[str] = []
+        if evidence_count >= 6:
+            reasons.append(f"{evidence_count} fontes legislativas recuperadas.")
+        elif evidence_count > 0:
+            reasons.append(f"{evidence_count} fonte(s) legislativa(s) recuperada(s).")
+        else:
+            reasons.append("Nenhuma fonte legislativa encontrada no corpus.")
+
         if verification_ratio > 0:
-            reasons.append(
-                f"{verified_count} de {total_cited} artigos confirmados no corpus."
+            reasons.append(f"{verified_count} de {total_cited} artigos confirmados.")
+        elif verified_articles:
+            reasons.append("Artigos citados nao foram verificados no corpus.")
+
+        if validation.confirmed_legal_basis:
+            reasons.append("Base legal confirmada no contexto recuperado.")
+
+        if (
+            classification.main_branch not in ("indeterminado", "misto")
+            and evidence_count > 0
+        ):
+            from app.services.legal.retrieval import _chunk_branch
+
+            on_branch = sum(
+                1
+                for ev in retrieval.official_evidence
+                if _chunk_branch(ev.chunk) == classification.main_branch
             )
-        if verification_ratio == 0 and total_cited > 0:
-            reasons.append("Nenhum artigo citado foi confirmado no corpus indexado.")
-        if verification_ratio < 0.5:
-            reasons.append(
-                "Confiança limitada — menos de metade dos artigos verificados."
-            )
-        if validation.answer_mode == "limited":
-            reasons.append(
-                "Modo limitado — o sistema não garante total precisão normativa."
-            )
-        if not reasons:
-            reasons.append(
-                "Equilíbrio entre suporte recuperado, verificação e limites ainda abertos."
-            )
+            if on_branch >= 3:
+                reasons.append(
+                    f"Forte alinhamento com o ramo {classification.main_branch}."
+                )
+            elif on_branch > 0:
+                reasons.append(
+                    f"Alinhamento parcial com o ramo {classification.main_branch}."
+                )
 
         return ConfidenceResult(
             level=level,

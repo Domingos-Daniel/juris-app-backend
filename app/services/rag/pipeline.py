@@ -2004,6 +2004,7 @@ class RAGPipeline:
                     excerpt=chunk.text[:780],
                     attribution_text=chunk.text[:300] if chunk.text else None,
                     source_scope=chunk.source_scope,
+                    source_kind=meta.get("document_kind"),
                     document_id=chunk.document_id,
                 )
             )

@@ -2312,8 +2312,13 @@ def _rescore_ranked(
     return sorted(rescored, key=lambda item: item.score, reverse=True)
 
 
-def _source_key(evidence: RetrievalEvidence) -> tuple[str, int | None, str]:
-    return (evidence.chunk.source, evidence.chunk.page, evidence.source_bucket)
+def _source_key(evidence: RetrievalEvidence) -> tuple[str, int | None, str, str]:
+    return (
+        evidence.chunk.source,
+        evidence.chunk.page,
+        evidence.source_bucket,
+        (evidence.chunk.metadata or {}).get("document_kind") or "",
+    )
 
 
 def _dedupe_ranked(ranked: list[RetrievalEvidence]) -> list[RetrievalEvidence]:
@@ -2388,6 +2393,14 @@ def _user_doc_selection(ranked: list[RetrievalEvidence]) -> list[RetrievalEviden
     return [item for item in ranked if item.source_bucket == "user_upload"]
 
 
+def _juris_doc_selection(ranked: list[RetrievalEvidence]) -> list[RetrievalEvidence]:
+    return [
+        item
+        for item in ranked
+        if (item.chunk.metadata or {}).get("document_kind") == "jurisprudence"
+    ]
+
+
 def _target_branch_priority(
     classification: LegalClassification, official: list[RetrievalEvidence]
 ) -> list[RetrievalEvidence]:
@@ -2417,11 +2430,11 @@ def _score_chunk(
 
     if document_kind == "jurisprudence":
         if retrieval_reason == "jurisprudence":
-            score += 2.8
+            score += 10.0  # Strong boost to survive branch penalties
         elif classification.audience == "tecnico":
-            score += 0.6
+            score += 1.5
         else:
-            score -= 1.8
+            score -= 0.2
 
     score += _branch_alignment_score(classification, chunk)
     score += _diploma_match_score(classification, chunk)
@@ -2810,19 +2823,20 @@ class LegalRetrievalService:
         official = _question_specific_branch_filter(classification, question, official)
         official = _limit_by_branch(classification, official)
         user_docs = _user_doc_selection(ranked)
+        juris_docs = _juris_doc_selection(ranked)[:2]
 
         branch_map: dict[LegalBranch, list[RetrievalEvidence]] = defaultdict(list)
-        for evidence in official + user_docs:
+        for evidence in official + user_docs + juris_docs:
             branch_map[_chunk_branch(evidence.chunk)].append(evidence)
 
         requested = _target_branches(classification)
         branch_groups, missing_branches = _branch_groups_from_map(branch_map, requested)
         notes = _retrieval_notes(official, missing_branches)
 
-        prioritised_chunks = _mix_prioritized_chunks(official, user_docs)
+        prioritised_chunks = _mix_prioritized_chunks(official + juris_docs, user_docs)
         return RetrievalResult(
             classification=classification,
-            official_evidence=official[:8],
+            official_evidence=(juris_docs + official)[:8],
             user_evidence=user_docs[:4],
             branch_groups=branch_groups,
             retrieved_chunks=prioritised_chunks,
