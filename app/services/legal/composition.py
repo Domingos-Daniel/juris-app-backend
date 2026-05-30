@@ -48,13 +48,53 @@ def _clean(text: str) -> str:
     return updated
 
 
-def _source_line(source: SourceItem) -> str:
+def _build_ai_prefs_guidance(prefs: dict | None) -> str:
+    """Build prompt guidance string from user AI preferences."""
+    if not prefs or not any(prefs.values()):
+        return ""
+    tone_map = {
+        "formal": "Usa linguagem formal e juridica.",
+        "didatico": "Explica de forma didatica e pedagogica.",
+        "simples": "Responde com linguagem simples e direta.",
+    }
+    detail_map = {
+        "breve": "Respostas curtas e objectivas.",
+        "normal": "Detalhe equilibrado.",
+        "detalhado": "Respostas detalhadas e exaustivas.",
+    }
+    style_map = {
+        "juridico": "Usa terminologia juridica tecnica.",
+        "acessivel": "Usa linguagem acessivel para nao-juristas.",
+    }
+    format_map = {
+        "paragrafos": "Usa paragrafos estruturados.",
+        "topicos": "Usa topicos e listas.",
+        "auto": "Formato automatico.",
+    }
+
+    lines = [
+        "PREFERENCIAS DO UTILIZADOR (sobrepoem a detecao automatica de audiencia):"
+    ]
+    t = prefs.get("tone", "formal")
+    lines.append(f"- Tom: {t}. {tone_map.get(t, '')}")
+    if prefs.get("detail_level"):
+        d = prefs["detail_level"]
+        lines.append(f"- Nivel de detalhe: {d}. {detail_map.get(d, '')}")
+    if prefs.get("language_style"):
+        s = prefs["language_style"]
+        lines.append(f"- Estilo: {s}. {style_map.get(s, '')}")
+    f = prefs.get("response_format", "auto")
+    lines.append(f"- Formato: {f}. {format_map.get(f, '')}")
+    return "\n".join(lines) + "\n\n"
+
+
+def _source_line(source) -> str:
     article = f", art. {source.article_number}" if source.article_number else ""
     page = f", pag. {source.page}" if source.page else ""
     scope_tag = ""
-    if source.source_scope == "user_upload":
+    if getattr(source, "source_scope", "") == "user_upload":
         scope_tag = " (Documento do Utilizador)"
-    elif source.source_kind == "jurisprudence":
+    elif getattr(source, "source_kind", "") == "jurisprudence":
         scope_tag = " (Jurisprudencia)"
     return f"- {source.title}{article}{page}{scope_tag}"
 
@@ -129,8 +169,10 @@ class LegalComposer:
         classification: LegalClassification,
         retrieved_chunks: list,
         conversation_history: list[str] | None = None,
+        ai_preferences: dict | None = None,
     ) -> str:
         context_blocks: list[str] = []
+        prefs = ai_preferences or {}
         allowed_articles: list[str] = []
 
         # Separate and order: user docs first, then official
@@ -268,6 +310,7 @@ class LegalComposer:
             f"ARTIGOS CONFIRMADOS NO CONTEXTO (WHITELIST): {whitelist_text}\n\n"
             f"{audience_guidance}\n"
             f"{follow_up_guidance}"
+            f"{_build_ai_prefs_guidance(prefs)}"
             f"TIPO DE RESPOSTA: {'CORRECCAO' if classification.is_correction else 'TRANSFORMACAO' if classification.is_transformation else 'RESPOSTA NORMAL'}\n"
             f"OBJECTIVO: {classification.transformation_type if classification.is_transformation else 'Analise Juridica'}\n"
             f"Ramo: {classification.main_branch} | Audiencia: {classification.audience} | Topico: {classification.topic_route}\n"

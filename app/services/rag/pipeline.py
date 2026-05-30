@@ -901,6 +901,9 @@ class RAGPipeline:
             classification,
             retrieval.retrieved_chunks,
             conversation_history=history,
+            ai_preferences=postgres_manager.get_user_preferences(str(user_id))
+            if user_id
+            else None,
         )
         _tllm = _time.time()
         try:
@@ -1703,6 +1706,9 @@ class RAGPipeline:
             classification,
             retrieval.retrieved_chunks,
             conversation_history=history,
+            ai_preferences=postgres_manager.get_user_preferences(str(user_id))
+            if user_id
+            else None,
         )
 
         # --- Phase 3: LLM streaming ---

@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-from fastapi import APIRouter, Depends, HTTPException, status
+import time
+from collections import defaultdict
+
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 from pydantic import BaseModel
 
 from app.core.auth import (
@@ -13,6 +16,33 @@ from app.db.postgres import postgres_manager
 from app.db.models import LoginRequest, LoginResponse
 
 router = APIRouter(tags=["auth"])
+
+# ── Rate limiter (in-memory, per-IP) ──────────────────────────────
+
+_AUTH_WINDOW = 60  # 1 minute window
+_AUTH_MAX_ATTEMPTS = 5  # max 5 attempts per minute
+_attempts: dict[str, list[float]] = defaultdict(list)
+
+
+def _check_rate_limit(client_ip: str) -> None:
+    now = time.time()
+    window = now - _AUTH_WINDOW
+    _attempts[client_ip] = [t for t in _attempts[client_ip] if t > window]
+    if len(_attempts[client_ip]) >= _AUTH_MAX_ATTEMPTS:
+        retry_after = int(_attempts[client_ip][0] + _AUTH_WINDOW - now) + 1
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail=f"Muitas tentativas. Tente novamente em {retry_after}s.",
+            headers={"Retry-After": str(retry_after)},
+        )
+    _attempts[client_ip].append(now)
+
+
+def _get_client_ip(request: Request) -> str:
+    forwarded = request.headers.get("X-Forwarded-For")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    return request.client.host if request.client else "unknown"
 
 
 # ── Models ────────────────────────────────────────────────────────
@@ -43,7 +73,8 @@ class UpdatePreferencesRequest(BaseModel):
 
 
 @router.post("/auth/register", response_model=LoginResponse)
-async def register(payload: RegisterRequest) -> LoginResponse:
+async def register(payload: RegisterRequest, request: Request) -> LoginResponse:
+    _check_rate_limit(_get_client_ip(request))
     data = validate_register(
         payload.name, payload.email, payload.phone, payload.password
     )
@@ -70,7 +101,8 @@ async def register(payload: RegisterRequest) -> LoginResponse:
 
 
 @router.post("/auth/login", response_model=LoginResponse)
-async def login(payload: LoginRequest) -> LoginResponse:
+async def login(payload: LoginRequest, request: Request) -> LoginResponse:
+    _check_rate_limit(_get_client_ip(request))
     user = validate_login(payload.username, payload.password)
     token = issue_token(str(user["id"]), user.get("email", payload.username))
     postgres_manager.issue_auth_token(
